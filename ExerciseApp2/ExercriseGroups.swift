@@ -32,4 +32,13 @@ class ExerciseGroup {
         "external obliques",
         "calves"
     ]
+    
+    let resistenceType = [
+        "bodyweight",
+        "weighted",
+        "counterweight",
+        "resistence bands"
+    ]
 }
+
+

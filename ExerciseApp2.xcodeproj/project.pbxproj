@@ -14,6 +14,7 @@
 		B5B012D01FB9C725004CA54F /* ExerciseApp2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012CF1FB9C725004CA54F /* ExerciseApp2Tests.swift */; };
 		B5B012DB1FB9C725004CA54F /* ExerciseApp2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012DA1FB9C725004CA54F /* ExerciseApp2UITests.swift */; };
 		B5B012E91FB9D666004CA54F /* addExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012E81FB9D666004CA54F /* addExerciseViewController.swift */; };
+		B5B012EB1FB9E948004CA54F /* ExercriseGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012EA1FB9E948004CA54F /* ExercriseGroups.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B5B012DA1FB9C725004CA54F /* ExerciseApp2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseApp2UITests.swift; sourceTree = "<group>"; };
 		B5B012DC1FB9C725004CA54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B012E81FB9D666004CA54F /* addExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addExerciseViewController.swift; sourceTree = "<group>"; };
+		B5B012EA1FB9E948004CA54F /* ExercriseGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercriseGroups.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B012BA1FB9C725004CA54F /* AppDelegate.swift */,
+				B5B012EA1FB9E948004CA54F /* ExercriseGroups.swift */,
 				B5B012BC1FB9C725004CA54F /* ViewController.swift */,
 				B5B012E81FB9D666004CA54F /* addExerciseViewController.swift */,
 				B5B012C11FB9C725004CA54F /* Assets.xcassets */,
@@ -260,6 +263,7 @@
 			files = (
 				B5B012BD1FB9C725004CA54F /* ViewController.swift in Sources */,
 				B5B012BB1FB9C725004CA54F /* AppDelegate.swift in Sources */,
+				B5B012EB1FB9E948004CA54F /* ExercriseGroups.swift in Sources */,
 				B5B012E91FB9D666004CA54F /* addExerciseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
