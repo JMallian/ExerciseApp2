@@ -11,34 +11,16 @@ import UIKit
 class addExerciseViewController: UIViewController {
     
     let goBackButton: UIButton
-    let dataMuscleGroups: [String]
+    let addMuscleGroupButton: UIButton
+    //let dataMuscleGroups: [String]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         goBackButton = UIButton()
-        dataMuscleGroups = [
-            "quadriceps",
-            "gluteals",
-            "hamstrings",
-            "erectors",
-            "upper gluteals",
-            "deltoids",
-            "pectorals",
-            "triceps",
-            "upper trapezius",
-            "anterior deltoids",
-            "lats",
-            "midtraps",
-            "rhomboids",
-            "biceps",
-            "posterior deltoids",
-            "lateral deltoids",
-            "traps",
-            "rectus abdominis",
-            "internal obliques",
-            "external obliques",
-            "calves"
-        ]
+        addMuscleGroupButton = UIButton()
+
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+
         
         let screenSize: CGSize = UIScreen.main.bounds.size
         //let centerX: CGFloat = screenSize.width / 2
@@ -50,6 +32,13 @@ class addExerciseViewController: UIViewController {
         goBackButton.setTitleColor(UIColor.black, for: .normal)
         goBackButton.addTarget(self, action: #selector(addExerciseViewController.goBackPressed), for: UIControlEvents.touchUpInside)
         self.view.addSubview(goBackButton)
+        
+        addMuscleGroupButton.frame = CGRect(x: 0, y: centerY + 25, width: screenSize.width, height: 50)
+        addMuscleGroupButton.setTitle("Add Muscles Used", for: .normal)
+        addMuscleGroupButton.backgroundColor = UIColor.cyan
+        addMuscleGroupButton.setTitleColor(UIColor.black, for: .normal)
+        addMuscleGroupButton.addTarget(self, action: #selector(addExerciseViewController.addMuscleGroupPressed), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(addMuscleGroupButton)
 
     }
     
@@ -69,5 +58,9 @@ class addExerciseViewController: UIViewController {
     
     @objc func goBackPressed() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func addMuscleGroupPressed() {
+        self.present(musclesTableView(), animated: true, completion: nil)
     }
 }
