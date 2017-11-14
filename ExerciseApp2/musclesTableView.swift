@@ -48,7 +48,12 @@ class musclesTableView: UITableViewController {
         myCell.textLabel?.text = dataMuscleGroups[indexPath.row]
         //myCell.musclesTableView = self
         
-        return myCell        
+        return myCell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let myCell = tableView.cellForRow(at: indexPath)
+        myCell?.accessoryType = .checkmark
     }
 
     
