@@ -63,6 +63,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Exercise App"
         // Do any additional setup after loading the view, typically from a nib.
     }
 

@@ -13,9 +13,8 @@ class musclesTableView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.navigationItem.title = "Muscles Worked"
-        
+        self.title = "Add Muscles Used"
+                
         dataMuscleGroups = [
             "quadriceps",
             "gluteals",
@@ -52,6 +51,7 @@ class musclesTableView: UITableViewController {
         return myCell
     }
     
+    //should probably limit the selection to 3 or so
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let myCell = tableView.cellForRow(at: indexPath)
         if myCell?.accessoryType == .checkmark {

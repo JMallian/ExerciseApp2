@@ -16,6 +16,7 @@
 		B5B012DB1FB9C725004CA54F /* ExerciseApp2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012DA1FB9C725004CA54F /* ExerciseApp2UITests.swift */; };
 		B5B012E91FB9D666004CA54F /* addExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012E81FB9D666004CA54F /* addExerciseViewController.swift */; };
 		B5B012EB1FB9E948004CA54F /* ExercriseGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012EA1FB9E948004CA54F /* ExercriseGroups.swift */; };
+		B5C154601FBDFF560093A2F4 /* resistenceTypeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C1545F1FBDFF560093A2F4 /* resistenceTypeTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B5B012DC1FB9C725004CA54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B012E81FB9D666004CA54F /* addExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addExerciseViewController.swift; sourceTree = "<group>"; };
 		B5B012EA1FB9E948004CA54F /* ExercriseGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercriseGroups.swift; sourceTree = "<group>"; };
+		B5C1545F1FBDFF560093A2F4 /* resistenceTypeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resistenceTypeTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				B5B012EA1FB9E948004CA54F /* ExercriseGroups.swift */,
 				B5B012BC1FB9C725004CA54F /* ViewController.swift */,
 				B5B012E81FB9D666004CA54F /* addExerciseViewController.swift */,
+				B5C1545F1FBDFF560093A2F4 /* resistenceTypeTableView.swift */,
 				B59F46CD1FBB705D00EB46F0 /* musclesTableView.swift */,
 				B5B012C11FB9C725004CA54F /* Assets.xcassets */,
 				B5B012C31FB9C725004CA54F /* LaunchScreen.storyboard */,
@@ -268,6 +271,7 @@
 				B59F46CE1FBB705D00EB46F0 /* musclesTableView.swift in Sources */,
 				B5B012BB1FB9C725004CA54F /* AppDelegate.swift in Sources */,
 				B5B012EB1FB9E948004CA54F /* ExercriseGroups.swift in Sources */,
+				B5C154601FBDFF560093A2F4 /* resistenceTypeTableView.swift in Sources */,
 				B5B012E91FB9D666004CA54F /* addExerciseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

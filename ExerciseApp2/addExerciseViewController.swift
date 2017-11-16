@@ -12,10 +12,12 @@ class addExerciseViewController: UIViewController {
     
     let goBackButton: UIButton
     let addMuscleGroupButton: UIButton
+    let addResistenceTypeButton: UIButton
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         goBackButton = UIButton()
         addMuscleGroupButton = UIButton()
+        addResistenceTypeButton = UIButton()
 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -38,6 +40,15 @@ class addExerciseViewController: UIViewController {
         addMuscleGroupButton.setTitleColor(UIColor.black, for: .normal)
         addMuscleGroupButton.addTarget(self, action: #selector(addExerciseViewController.addMuscleGroupPressed), for: UIControlEvents.touchUpInside)
         self.view.addSubview(addMuscleGroupButton)
+        
+        addResistenceTypeButton.frame = CGRect(x: 0, y: centerY - 75, width: screenSize.width, height: 50)
+        addResistenceTypeButton.setTitle("Add Resistence Type", for: .normal)
+        addResistenceTypeButton.backgroundColor = UIColor.cyan
+        addResistenceTypeButton.setTitleColor(UIColor.black, for: .normal)
+        addResistenceTypeButton.addTarget(self, action: #selector(addExerciseViewController.addResistenceTypePressed), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(addResistenceTypeButton)
+        
+    
 
     }
     
@@ -47,6 +58,7 @@ class addExerciseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Add Exercise"
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -62,5 +74,9 @@ class addExerciseViewController: UIViewController {
     @objc func addMuscleGroupPressed() {
         //self.present(musclesTableView(), animated: true, completion: nil)
         self.navigationController?.pushViewController(musclesTableView(), animated: true)
+    }
+    
+    @objc func addResistenceTypePressed() {
+        self.navigationController?.pushViewController(resistenceTypeTableView(style: .plain), animated: true)
     }
 }

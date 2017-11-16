@@ -1,0 +1,62 @@
+//
+//  resistenceTypeTableView.swift
+//  ExerciseApp2
+//
+//  Created by Mallian, Jessica L on 11/16/17.
+//  Copyright © 2017 Mallian, Jessica L. All rights reserved.
+//
+
+import UIKit
+
+class resistenceTypeTableView: UITableViewController {
+    var resistenceTypeData: [String] = []
+    var cellSelected: Bool
+    var cellIndexForSelected: IndexPath
+    
+    override init(style: UITableViewStyle) {
+        cellSelected = false
+        cellIndexForSelected = IndexPath()
+        super.init(style: .plain)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Select Resistence Type"
+        resistenceTypeData = [
+            "Bodyweight Exercise",
+            "Weighted",
+            "Resistence Band",
+            "Counter-Weight"
+        ]
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return resistenceTypeData.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let myCell = UITableViewCell(style: .default, reuseIdentifier: "cellID")
+        myCell.textLabel?.text = resistenceTypeData[indexPath.row]
+        
+        return myCell
+    }
+    
+    //only one should be checked at a time
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let myCell = tableView.cellForRow(at: indexPath)
+        
+        if !cellSelected {
+            myCell?.accessoryType = .checkmark
+            cellSelected = true
+        }else{
+            tableView.cellForRow(at: cellIndexForSelected)?.accessoryType = .none
+            myCell?.accessoryType = .checkmark
+        }
+        cellIndexForSelected = indexPath
+    }
+}
