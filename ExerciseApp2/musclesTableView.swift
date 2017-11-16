@@ -14,6 +14,8 @@ class musclesTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //self.navigationItem.title = "Muscles Worked"
+        
         dataMuscleGroups = [
             "quadriceps",
             "gluteals",
@@ -46,14 +48,21 @@ class musclesTableView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: "cellID")
         myCell.textLabel?.text = dataMuscleGroups[indexPath.row]
-        //myCell.musclesTableView = self
         
         return myCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let myCell = tableView.cellForRow(at: indexPath)
-        myCell?.accessoryType = .checkmark
+        if myCell?.accessoryType == .checkmark {
+            myCell?.accessoryType = .none
+        }else{
+            myCell?.accessoryType = .checkmark
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.headerView(forSection: section)
     }
 
     

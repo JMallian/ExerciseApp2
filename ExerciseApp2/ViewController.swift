@@ -72,7 +72,8 @@ class ViewController: UIViewController {
     }
     
     @objc func addExercisePressed() {
-        self.present(addExerciseViewController(), animated: true, completion: nil)
+        //self.present(addExerciseViewController(), animated: true, completion: nil)
+        self.navigationController?.pushViewController(addExerciseViewController(), animated: true)
     }
 
 

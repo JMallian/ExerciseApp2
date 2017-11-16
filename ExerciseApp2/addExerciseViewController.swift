@@ -12,7 +12,6 @@ class addExerciseViewController: UIViewController {
     
     let goBackButton: UIButton
     let addMuscleGroupButton: UIButton
-    //let dataMuscleGroups: [String]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         goBackButton = UIButton()
@@ -61,6 +60,7 @@ class addExerciseViewController: UIViewController {
     }
     
     @objc func addMuscleGroupPressed() {
-        self.present(musclesTableView(), animated: true, completion: nil)
+        //self.present(musclesTableView(), animated: true, completion: nil)
+        self.navigationController?.pushViewController(musclesTableView(), animated: true)
     }
 }
