@@ -53,7 +53,7 @@ class resistenceTypeTableView: UITableViewController {
         if !cellSelected {
             myCell?.accessoryType = .checkmark
             cellSelected = true
-        }else{
+        }else{ //a UITableViewCell is already selected
             tableView.cellForRow(at: cellIndexForSelected)?.accessoryType = .none
             myCell?.accessoryType = .checkmark
         }

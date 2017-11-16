@@ -8,31 +8,48 @@
 
 import UIKit
 
-class addExerciseViewController: UIViewController {
+class addExerciseViewController: UIViewController, UITextFieldDelegate {
+    let displayName: UILabel
+    let displayResistenceType: UILabel
+    let displayMuscleGroup: UILabel
     
-    let goBackButton: UIButton
+    let typeExerciseName: UITextField
     let addMuscleGroupButton: UIButton
     let addResistenceTypeButton: UIButton
+    let createExercise: UIButton
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        goBackButton = UIButton()
+        displayName = UILabel()
+        displayResistenceType = UILabel()
+        displayMuscleGroup = UILabel()
+        
+        typeExerciseName = UITextField()
         addMuscleGroupButton = UIButton()
         addResistenceTypeButton = UIButton()
+        createExercise = UIButton()
 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-
+        //THESE THINGS NEED TO GO INTO FUNCTIONS!!
         
         let screenSize: CGSize = UIScreen.main.bounds.size
         //let centerX: CGFloat = screenSize.width / 2
         let centerY: CGFloat = screenSize.height / 2
         
-        goBackButton.frame = CGRect(x: 0, y: centerY + 125, width: screenSize.width, height: 50)
-        goBackButton.setTitle("Go Back", for: .normal)
-        goBackButton.backgroundColor = UIColor.cyan
-        goBackButton.setTitleColor(UIColor.black, for: .normal)
-        goBackButton.addTarget(self, action: #selector(addExerciseViewController.goBackPressed), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(goBackButton)
+        typeExerciseName.frame = CGRect(x: 0, y: centerY - 175, width: screenSize.width, height: 50)
+        typeExerciseName.textAlignment = NSTextAlignment.center
+        typeExerciseName.textColor = UIColor.black
+        typeExerciseName.backgroundColor = UIColor.cyan
+        typeExerciseName.borderStyle = UITextBorderStyle.bezel
+        typeExerciseName.delegate = self
+        self.view.addSubview(typeExerciseName)
+        
+        createExercise.frame = CGRect(x: 0, y: centerY + 125, width: screenSize.width, height: 50)
+        createExercise.setTitle("Go Back", for: .normal)
+        createExercise.backgroundColor = UIColor.cyan
+        createExercise.setTitleColor(UIColor.black, for: .normal)
+        createExercise.addTarget(self, action: #selector(addExerciseViewController.createExercisePressed), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(createExercise)
         
         addMuscleGroupButton.frame = CGRect(x: 0, y: centerY + 25, width: screenSize.width, height: 50)
         addMuscleGroupButton.setTitle("Add Muscles Used", for: .normal)
@@ -67,8 +84,8 @@ class addExerciseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func goBackPressed() {
-        self.dismiss(animated: true, completion: nil)
+    @objc func createExercisePressed() {
+        //makes an instance of an exercise class and adds it to the store of exercises!
     }
     
     @objc func addMuscleGroupPressed() {
