@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol musclesTableViewDelegate: class {
+    func passMusclesUsed(text: String) //needs to be changed to be an array
+}
+
 class musclesTableView: UITableViewController {
     var dataMuscleGroups: [String] = []
+    var delegate: musclesTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,12 +63,15 @@ class musclesTableView: UITableViewController {
             myCell?.accessoryType = .none
         }else{
             myCell?.accessoryType = .checkmark
+            delegate?.passMusclesUsed(text: dataMuscleGroups[0]) //just for testing purposes
         }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableView.headerView(forSection: section)
     }
+    
+
 
     
 }

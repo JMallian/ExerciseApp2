@@ -8,7 +8,7 @@
 
 import UIKit
 
-class addExerciseViewController: UIViewController, UITextFieldDelegate {
+class addExerciseViewController: UIViewController, UITextFieldDelegate, resistenceTypeTableViewDelegate, musclesTableViewDelegate {
     let displayName: UILabel
     let displayResistenceType: UILabel
     let displayMuscleGroup: UILabel
@@ -36,6 +36,13 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate {
         //let centerX: CGFloat = screenSize.width / 2
         let centerY: CGFloat = screenSize.height / 2
         
+        displayName.frame = CGRect(x: 0, y: 50, width: screenSize.width, height: 50)
+        self.view.addSubview(displayName)
+        displayResistenceType.frame = CGRect(x: 0, y: 65, width: screenSize.width, height: 50)
+        self.view.addSubview(displayResistenceType)
+        displayMuscleGroup.frame = CGRect(x: 0, y: 80, width: screenSize.width, height: 50)
+        self.view.addSubview(displayMuscleGroup)
+        
         typeExerciseName.frame = CGRect(x: 0, y: centerY - 175, width: screenSize.width, height: 50)
         typeExerciseName.textAlignment = NSTextAlignment.center
         typeExerciseName.textColor = UIColor.black
@@ -45,7 +52,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(typeExerciseName)
         
         createExercise.frame = CGRect(x: 0, y: centerY + 125, width: screenSize.width, height: 50)
-        createExercise.setTitle("Go Back", for: .normal)
+        createExercise.setTitle("Create Exercise", for: .normal)
         createExercise.backgroundColor = UIColor.cyan
         createExercise.setTitleColor(UIColor.black, for: .normal)
         createExercise.addTarget(self, action: #selector(addExerciseViewController.createExercisePressed), for: UIControlEvents.touchUpInside)
@@ -90,10 +97,30 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate {
     
     @objc func addMuscleGroupPressed() {
         //self.present(musclesTableView(), animated: true, completion: nil)
-        self.navigationController?.pushViewController(musclesTableView(), animated: true)
+        let nextViewController = musclesTableView()
+        nextViewController.delegate = self
+        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     @objc func addResistenceTypePressed() {
-        self.navigationController?.pushViewController(resistenceTypeTableView(style: .plain), animated: true)
+        let nextViewController = resistenceTypeTableView(style: .plain)
+        nextViewController.delegate = self
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+        //self.navigationController?.pushViewController(resistenceTypeTableView(style: .plain), animated: true)
+    }
+    
+    //dismesses keyboard when user hits Return on keyboard while typing text into typeExerciseName UITextField
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.typeExerciseName.resignFirstResponder()
+        displayName.text = typeExerciseName.text
+        return true
+    }
+    
+    func passResistenceType(text: String) {
+        displayResistenceType.text = text
+    }
+    
+    func passMusclesUsed(text: String) { //this needs to change into an array
+        displayMuscleGroup.text = text
     }
 }

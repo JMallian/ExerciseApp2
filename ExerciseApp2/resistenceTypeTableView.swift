@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol resistenceTypeTableViewDelegate: class {
+    func passResistenceType(text: String)
+}
+
 class resistenceTypeTableView: UITableViewController {
+    var delegate: resistenceTypeTableViewDelegate?
     var resistenceTypeData: [String] = []
     var cellSelected: Bool
     var cellIndexForSelected: IndexPath
@@ -58,5 +63,10 @@ class resistenceTypeTableView: UITableViewController {
             myCell?.accessoryType = .checkmark
         }
         cellIndexForSelected = indexPath
+        delegate?.passResistenceType(text: (myCell?.textLabel?.text)!)        
     }
+    
+    //override func viewWillDisappear(_ animated: Bool) {
+    //    <#code#>
+    //}
 }
