@@ -10,21 +10,32 @@
 import UIKit
 
 class ExerciseStore {
-    var allExercises = [Exercise]()
+    static var allExercises = [Exercise]()
     
     func storeExercise(exercise: Exercise) {
-        allExercises.append(exercise)
+        ExerciseStore.allExercises.append(exercise)
     }
     
     func removeExercise(exercise: Exercise) {
-        if let index = allExercises.index(of: exercise) {
-            allExercises.remove(at: index)
+        if let index = ExerciseStore.allExercises.index(of: exercise) {
+            ExerciseStore.allExercises.remove(at: index)
         }
     }
     
     func arrangeAlphabetically() {
         //allExercises.sort { $0.name < $1.name }
-        allExercises = allExercises.sorted()
+        ExerciseStore.allExercises = ExerciseStore.allExercises.sorted()
+    }
+    
+    //for testing purposes
+    static func printExercises() {
+        for exercise in ExerciseStore.allExercises {
+            print(exercise.name)
+            print(exercise.resistenceType)
+            for muscleGroup in exercise.primaryMusclesUsed {
+                print(muscleGroup)
+            }
+        }
     }
     
 }

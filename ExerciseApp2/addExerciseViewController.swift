@@ -46,6 +46,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         
         typeExerciseName.frame = CGRect(x: 0, y: centerY - 175, width: screenSize.width, height: 50)
         typeExerciseName.textAlignment = NSTextAlignment.center
+        typeExerciseName.placeholder = "Type Exercise Name"
         typeExerciseName.textColor = ColorsForApp.textColor
         typeExerciseName.backgroundColor = ColorsForApp.componentBackgroundColor
         typeExerciseName.borderStyle = UITextBorderStyle.bezel
@@ -72,9 +73,6 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         addResistenceTypeButton.setTitleColor(ColorsForApp.textColor, for: .normal)
         addResistenceTypeButton.addTarget(self, action: #selector(addExerciseViewController.addResistenceTypePressed), for: UIControlEvents.touchUpInside)
         self.view.addSubview(addResistenceTypeButton)
-        
-    
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -94,6 +92,25 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     
     @objc func createExercisePressed() {
         //makes an instance of an exercise class and adds it to the store of exercises!
+        //button only does things if labels have data
+        if (displayMuscleGroup.text != nil && displayResistenceType.text != nil && displayName.text != nil) {
+            let exerciseName = displayName.text
+            let resistenceType = displayResistenceType.text
+            let stringToSplit = displayMuscleGroup.text
+            let musclesType = stringToSplit?.components(separatedBy: " ,") //not sure if this is what I want
+            let exerciseToAdd = Exercise(name: exerciseName!, primaryMusclesUsed: musclesType!, resistenceType: resistenceType!)
+            ExerciseStore.allExercises.append(exerciseToAdd)
+            
+            //clear labels and display success
+            displayName.text = ""
+            displayMuscleGroup.text = "Exercise Added"
+            displayResistenceType.text = ""
+            typeExerciseName.text = ""
+            
+            //for testing
+            print("items in exercise array: \(ExerciseStore.allExercises.count)")
+            ExerciseStore.printExercises()
+        }
     }
     
     @objc func addMuscleGroupPressed() {
@@ -121,8 +138,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         displayResistenceType.text = text
     }
     
-    func passMusclesUsed(data: [String]) { //this needs to change into an array
-        //displayMuscleGroup.text = data[0]
+    func passMusclesUsed(data: [String]) {
         var displayString = ""
         for item in data {
             displayString = displayString + item + ", "
