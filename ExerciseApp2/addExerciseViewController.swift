@@ -45,30 +45,30 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         
         typeExerciseName.frame = CGRect(x: 0, y: centerY - 175, width: screenSize.width, height: 50)
         typeExerciseName.textAlignment = NSTextAlignment.center
-        typeExerciseName.textColor = UIColor.black
-        typeExerciseName.backgroundColor = UIColor.cyan
+        typeExerciseName.textColor = ColorsForApp.textColor
+        typeExerciseName.backgroundColor = ColorsForApp.componentBackgroundColor
         typeExerciseName.borderStyle = UITextBorderStyle.bezel
         typeExerciseName.delegate = self
         self.view.addSubview(typeExerciseName)
         
         createExercise.frame = CGRect(x: 0, y: centerY + 125, width: screenSize.width, height: 50)
         createExercise.setTitle("Create Exercise", for: .normal)
-        createExercise.backgroundColor = UIColor.cyan
-        createExercise.setTitleColor(UIColor.black, for: .normal)
+        createExercise.backgroundColor = ColorsForApp.componentBackgroundColor
+        createExercise.setTitleColor(ColorsForApp.textColor, for: .normal)
         createExercise.addTarget(self, action: #selector(addExerciseViewController.createExercisePressed), for: UIControlEvents.touchUpInside)
         self.view.addSubview(createExercise)
         
         addMuscleGroupButton.frame = CGRect(x: 0, y: centerY + 25, width: screenSize.width, height: 50)
         addMuscleGroupButton.setTitle("Add Muscles Used", for: .normal)
-        addMuscleGroupButton.backgroundColor = UIColor.cyan
-        addMuscleGroupButton.setTitleColor(UIColor.black, for: .normal)
+        addMuscleGroupButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        addMuscleGroupButton.setTitleColor(ColorsForApp.textColor, for: .normal)
         addMuscleGroupButton.addTarget(self, action: #selector(addExerciseViewController.addMuscleGroupPressed), for: UIControlEvents.touchUpInside)
         self.view.addSubview(addMuscleGroupButton)
         
         addResistenceTypeButton.frame = CGRect(x: 0, y: centerY - 75, width: screenSize.width, height: 50)
         addResistenceTypeButton.setTitle("Add Resistence Type", for: .normal)
-        addResistenceTypeButton.backgroundColor = UIColor.cyan
-        addResistenceTypeButton.setTitleColor(UIColor.black, for: .normal)
+        addResistenceTypeButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        addResistenceTypeButton.setTitleColor(ColorsForApp.textColor, for: .normal)
         addResistenceTypeButton.addTarget(self, action: #selector(addExerciseViewController.addResistenceTypePressed), for: UIControlEvents.touchUpInside)
         self.view.addSubview(addResistenceTypeButton)
         

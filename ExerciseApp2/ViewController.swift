@@ -38,15 +38,15 @@ class ViewController: UIViewController {
         addExerciseButton.setTitle("Add Exercise", for: .normal)
         
         //button colors
-        startNewButton.backgroundColor = UIColor.cyan
-        historyButton.backgroundColor = UIColor.cyan
-        createButton.backgroundColor = UIColor.cyan
-        addExerciseButton.backgroundColor = UIColor.cyan
+        startNewButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        historyButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        createButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        addExerciseButton.backgroundColor = ColorsForApp.componentBackgroundColor
         
-        startNewButton.setTitleColor(UIColor.black, for: .normal)
-        historyButton.setTitleColor(UIColor.black, for: .normal)
-        createButton.setTitleColor(UIColor.black, for: .normal)
-        addExerciseButton.setTitleColor(UIColor.black, for: .normal)
+        startNewButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        historyButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        createButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        addExerciseButton.setTitleColor(ColorsForApp.textColor, for: .normal)
         
         //button functions
         addExerciseButton.addTarget(self, action: #selector(ViewController.addExercisePressed), for: UIControlEvents.touchUpInside)
