@@ -12,6 +12,7 @@ protocol resistenceTypeTableViewDelegate: class {
     func passResistenceType(text: String)
 }
 
+
 class resistenceTypeTableView: UITableViewController {
     var delegate: resistenceTypeTableViewDelegate?
     var resistenceTypeData: [String] = []
@@ -23,6 +24,7 @@ class resistenceTypeTableView: UITableViewController {
         cellIndexForSelected = IndexPath()
         super.init(style: .plain)
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -40,9 +42,11 @@ class resistenceTypeTableView: UITableViewController {
         ]
     }
     
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return resistenceTypeData.count
     }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: "cellID")
@@ -50,6 +54,7 @@ class resistenceTypeTableView: UITableViewController {
         
         return myCell
     }
+    
     
     //only one should be checked at a time
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -63,10 +68,8 @@ class resistenceTypeTableView: UITableViewController {
             myCell?.accessoryType = .checkmark
         }
         cellIndexForSelected = indexPath
-        delegate?.passResistenceType(text: (myCell?.textLabel?.text)!)        
+        delegate?.passResistenceType(text: (myCell?.textLabel?.text)!)
     }
     
-    //override func viewWillDisappear(_ animated: Bool) {
-    //    <#code#>
-    //}
+    
 }

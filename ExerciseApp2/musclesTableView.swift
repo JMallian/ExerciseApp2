@@ -9,12 +9,15 @@
 import UIKit
 
 protocol musclesTableViewDelegate: class {
-    func passMusclesUsed(text: String) //needs to be changed to be an array
+    func passMusclesUsed(data: [String])
 }
 
 class musclesTableView: UITableViewController {
     var dataMuscleGroups: [String] = []
     var delegate: musclesTableViewDelegate?
+    var checkMarkCount: Int = 0
+    var maxCheckMarkCount: Int = 3
+    var dataToPass: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +62,24 @@ class musclesTableView: UITableViewController {
     //should probably limit the selection to 3 or so
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let myCell = tableView.cellForRow(at: indexPath)
+        
         if myCell?.accessoryType == .checkmark {
             myCell?.accessoryType = .none
+            checkMarkCount = checkMarkCount - 1
+            //remove it from the array
+            //this could probably be done better - possibly with a dictionary where key = indexPath
+            for item in dataToPass {
+                if item == myCell?.textLabel?.text {
+                    dataToPass.remove(at: dataToPass.index(of: (myCell?.textLabel?.text)!)!)
+                }
+            }
+        }else if checkMarkCount == maxCheckMarkCount {
+            //does nothing, user has to uncheck a check first to select this cell
         }else{
             myCell?.accessoryType = .checkmark
-            delegate?.passMusclesUsed(text: dataMuscleGroups[0]) //just for testing purposes
+            checkMarkCount = checkMarkCount + 1
+            dataToPass.append((myCell?.textLabel?.text)!)
+            delegate?.passMusclesUsed(data: dataToPass)
         }
     }
     

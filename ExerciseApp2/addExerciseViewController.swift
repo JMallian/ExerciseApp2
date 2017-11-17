@@ -9,6 +9,7 @@
 import UIKit
 
 class addExerciseViewController: UIViewController, UITextFieldDelegate, resistenceTypeTableViewDelegate, musclesTableViewDelegate {
+    
     let displayName: UILabel
     let displayResistenceType: UILabel
     let displayMuscleGroup: UILabel
@@ -120,7 +121,13 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         displayResistenceType.text = text
     }
     
-    func passMusclesUsed(text: String) { //this needs to change into an array
-        displayMuscleGroup.text = text
+    func passMusclesUsed(data: [String]) { //this needs to change into an array
+        //displayMuscleGroup.text = data[0]
+        var displayString = ""
+        for item in data {
+            displayString = displayString + item + ", "
+        }
+        let result = String(displayString.dropLast(2))
+        displayMuscleGroup.text = result
     }
 }
