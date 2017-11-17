@@ -6,6 +6,8 @@
 //  Copyright © 2017 Mallian, Jessica L. All rights reserved.
 //
 
+
+// this is not being used right now
 import Foundation
 
 class ExerciseGroup {
