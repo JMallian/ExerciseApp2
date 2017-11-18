@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B58C71C71FBF354000A3034B /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C71C61FBF354000A3034B /* Exercise.swift */; };
 		B58C71C91FBF3FA900A3034B /* ExerciseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C71C81FBF3FA900A3034B /* ExerciseStore.swift */; };
+		B58C71CB1FBF961B00A3034B /* ChooseWorkoutTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C71CA1FBF961B00A3034B /* ChooseWorkoutTypeViewController.swift */; };
+		B58C71CF1FBFC53900A3034B /* AsYouGoWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C71CE1FBFC53900A3034B /* AsYouGoWorkoutViewController.swift */; };
 		B59F46CE1FBB705D00EB46F0 /* musclesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F46CD1FBB705D00EB46F0 /* musclesTableView.swift */; };
 		B5B012BB1FB9C725004CA54F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012BA1FB9C725004CA54F /* AppDelegate.swift */; };
 		B5B012BD1FB9C725004CA54F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B012BC1FB9C725004CA54F /* ViewController.swift */; };
@@ -42,6 +44,8 @@
 /* Begin PBXFileReference section */
 		B58C71C61FBF354000A3034B /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		B58C71C81FBF3FA900A3034B /* ExerciseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStore.swift; sourceTree = "<group>"; };
+		B58C71CA1FBF961B00A3034B /* ChooseWorkoutTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseWorkoutTypeViewController.swift; sourceTree = "<group>"; };
+		B58C71CE1FBFC53900A3034B /* AsYouGoWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsYouGoWorkoutViewController.swift; sourceTree = "<group>"; };
 		B59F46CD1FBB705D00EB46F0 /* musclesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musclesTableView.swift; sourceTree = "<group>"; };
 		B5B012B71FB9C725004CA54F /* ExerciseApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B012BA1FB9C725004CA54F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,10 +114,12 @@
 			isa = PBXGroup;
 			children = (
 				B5B012BA1FB9C725004CA54F /* AppDelegate.swift */,
+				B58C71CE1FBFC53900A3034B /* AsYouGoWorkoutViewController.swift */,
 				B58C71C61FBF354000A3034B /* Exercise.swift */,
 				B58C71C81FBF3FA900A3034B /* ExerciseStore.swift */,
 				B5B012EA1FB9E948004CA54F /* ExercriseGroups.swift */,
 				B5B012BC1FB9C725004CA54F /* ViewController.swift */,
+				B58C71CA1FBF961B00A3034B /* ChooseWorkoutTypeViewController.swift */,
 				B5B012E81FB9D666004CA54F /* addExerciseViewController.swift */,
 				B5C154611FBE7B880093A2F4 /* ColorsForApp.swift */,
 				B5C1545F1FBDFF560093A2F4 /* resistenceTypeTableView.swift */,
@@ -276,9 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B58C71CF1FBFC53900A3034B /* AsYouGoWorkoutViewController.swift in Sources */,
 				B5B012BD1FB9C725004CA54F /* ViewController.swift in Sources */,
 				B58C71C71FBF354000A3034B /* Exercise.swift in Sources */,
 				B58C71C91FBF3FA900A3034B /* ExerciseStore.swift in Sources */,
+				B58C71CB1FBF961B00A3034B /* ChooseWorkoutTypeViewController.swift in Sources */,
 				B59F46CE1FBB705D00EB46F0 /* musclesTableView.swift in Sources */,
 				B5B012BB1FB9C725004CA54F /* AppDelegate.swift in Sources */,
 				B5C154621FBE7B880093A2F4 /* ColorsForApp.swift in Sources */,

@@ -5,6 +5,7 @@
 //  Created by Mallian, Jessica L on 11/13/17.
 //  Copyright © 2017 Mallian, Jessica L. All rights reserved.
 //
+// this is the root view controller for the app
 
 import UIKit
 
@@ -50,6 +51,7 @@ class ViewController: UIViewController {
         
         //button functions
         addExerciseButton.addTarget(self, action: #selector(ViewController.addExercisePressed), for: UIControlEvents.touchUpInside)
+        startNewButton.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)
         
         self.view.addSubview(startNewButton)
         self.view.addSubview(historyButton)
@@ -75,6 +77,10 @@ class ViewController: UIViewController {
     @objc func addExercisePressed() {
         //self.present(addExerciseViewController(), animated: true, completion: nil)
         self.navigationController?.pushViewController(addExerciseViewController(), animated: true)
+    }
+    
+    @objc func startNewPressed() {
+        self.navigationController?.pushViewController(ChooseWorkoutTypeViewController(), animated: true)
     }
 
 
