@@ -19,6 +19,8 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     let addResistenceTypeButton: UIButton
     let createExercise: UIButton
     
+    let screenSize: CGSize = UIScreen.main.bounds.size
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         displayName = UILabel()
         displayResistenceType = UILabel()
@@ -33,46 +35,15 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         
         //THESE THINGS NEED TO GO INTO FUNCTIONS!!
         
-        let screenSize: CGSize = UIScreen.main.bounds.size
+        
         //let centerX: CGFloat = screenSize.width / 2
-        let centerY: CGFloat = screenSize.height / 2
+        //let centerY: CGFloat = screenSize.height / 2
         
-        displayName.frame = CGRect(x: 0, y: 50, width: screenSize.width, height: 50)
-        self.view.addSubview(displayName)
-        displayResistenceType.frame = CGRect(x: 0, y: 65, width: screenSize.width, height: 50)
-        self.view.addSubview(displayResistenceType)
-        displayMuscleGroup.frame = CGRect(x: 0, y: 80, width: screenSize.width, height: 50)
-        self.view.addSubview(displayMuscleGroup)
-        
-        typeExerciseName.frame = CGRect(x: 0, y: centerY - 175, width: screenSize.width, height: 50)
-        typeExerciseName.textAlignment = NSTextAlignment.center
-        typeExerciseName.placeholder = "Type Exercise Name"
-        typeExerciseName.textColor = ColorsForApp.textColor
-        typeExerciseName.backgroundColor = ColorsForApp.componentBackgroundColor
-        typeExerciseName.borderStyle = UITextBorderStyle.bezel
-        typeExerciseName.delegate = self
-        self.view.addSubview(typeExerciseName)
-        
-        createExercise.frame = CGRect(x: 0, y: centerY + 125, width: screenSize.width, height: 50)
-        createExercise.setTitle("Create Exercise", for: .normal)
-        createExercise.backgroundColor = ColorsForApp.componentBackgroundColor
-        createExercise.setTitleColor(ColorsForApp.textColor, for: .normal)
-        createExercise.addTarget(self, action: #selector(addExerciseViewController.createExercisePressed), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(createExercise)
-        
-        addMuscleGroupButton.frame = CGRect(x: 0, y: centerY + 25, width: screenSize.width, height: 50)
-        addMuscleGroupButton.setTitle("Add Muscles Used", for: .normal)
-        addMuscleGroupButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        addMuscleGroupButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        addMuscleGroupButton.addTarget(self, action: #selector(addExerciseViewController.addMuscleGroupPressed), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(addMuscleGroupButton)
-        
-        addResistenceTypeButton.frame = CGRect(x: 0, y: centerY - 75, width: screenSize.width, height: 50)
-        addResistenceTypeButton.setTitle("Add Resistence Type", for: .normal)
-        addResistenceTypeButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        addResistenceTypeButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        addResistenceTypeButton.addTarget(self, action: #selector(addExerciseViewController.addResistenceTypePressed), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(addResistenceTypeButton)
+        createLabels()
+        createTextBox()
+        createExerciseButton()
+        createAddMuscleGroupButton()
+        createAddResistenceTypeButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -127,7 +98,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         //self.navigationController?.pushViewController(resistenceTypeTableView(style: .plain), animated: true)
     }
     
-    //dismesses keyboard when user hits Return on keyboard while typing text into typeExerciseName UITextField
+    //dismisses keyboard when user hits Return on keyboard while typing text into typeExerciseName UITextField
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.typeExerciseName.resignFirstResponder()
         displayName.text = typeExerciseName.text
@@ -145,5 +116,52 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         }
         let result = String(displayString.dropLast(2))
         displayMuscleGroup.text = result
+    }
+    
+    func createLabels() {
+        displayName.frame = CGRect(x: 0, y: 50, width: screenSize.width, height: 50)
+        self.view.addSubview(displayName)
+        displayResistenceType.frame = CGRect(x: 0, y: 65, width: screenSize.width, height: 50)
+        self.view.addSubview(displayResistenceType)
+        displayMuscleGroup.frame = CGRect(x: 0, y: 80, width: screenSize.width, height: 50)
+        self.view.addSubview(displayMuscleGroup)
+    }
+    
+    func createTextBox() {
+        typeExerciseName.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height/2 - 175, width: screenSize.width, height: 50)
+        typeExerciseName.textAlignment = NSTextAlignment.center
+        typeExerciseName.placeholder = "Type Exercise Name"
+        typeExerciseName.textColor = ColorsForApp.textColor
+        typeExerciseName.backgroundColor = ColorsForApp.componentBackgroundColor
+        typeExerciseName.borderStyle = UITextBorderStyle.bezel
+        typeExerciseName.delegate = self
+        self.view.addSubview(typeExerciseName)
+    }
+    
+    func createExerciseButton() {
+        createExercise.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height/2 + 125, width: screenSize.width, height: 50)
+        createExercise.setTitle("Create Exercise", for: .normal)
+        createExercise.backgroundColor = ColorsForApp.componentBackgroundColor
+        createExercise.setTitleColor(ColorsForApp.textColor, for: .normal)
+        createExercise.addTarget(self, action: #selector(addExerciseViewController.createExercisePressed), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(createExercise)
+    }
+    
+    func createAddMuscleGroupButton() {
+        addMuscleGroupButton.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height/2 + 25, width: screenSize.width, height: 50)
+        addMuscleGroupButton.setTitle("Add Muscles Used", for: .normal)
+        addMuscleGroupButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        addMuscleGroupButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        addMuscleGroupButton.addTarget(self, action: #selector(addExerciseViewController.addMuscleGroupPressed), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(addMuscleGroupButton)
+    }
+    
+    func createAddResistenceTypeButton() {
+        addResistenceTypeButton.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height/2 - 75, width: screenSize.width, height: 50)
+        addResistenceTypeButton.setTitle("Add Resistence Type", for: .normal)
+        addResistenceTypeButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        addResistenceTypeButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        addResistenceTypeButton.addTarget(self, action: #selector(addExerciseViewController.addResistenceTypePressed), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(addResistenceTypeButton)
     }
 }

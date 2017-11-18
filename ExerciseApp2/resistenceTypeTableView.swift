@@ -35,10 +35,11 @@ class resistenceTypeTableView: UITableViewController {
         super.viewDidLoad()
         self.title = "Select Resistence Type"
         resistenceTypeData = [
+            "Barbell",
             "Bodyweight Exercise",
-            "Weighted",
-            "Resistence Band",
-            "Counter-Weight"
+            "Counter-Weight",
+            "Dumbbell",
+            "Resistence Band"
         ]
     }
     
