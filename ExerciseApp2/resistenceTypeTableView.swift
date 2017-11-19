@@ -71,6 +71,4 @@ class resistenceTypeTableView: UITableViewController {
         cellIndexForSelected = indexPath
         delegate?.passResistenceType(text: (myCell?.textLabel?.text)!)
     }
-    
-    
 }

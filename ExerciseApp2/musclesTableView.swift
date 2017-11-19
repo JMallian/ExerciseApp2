@@ -22,6 +22,7 @@ class musclesTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Muscles Used"
+        tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "HeaderID")
                 
         dataMuscleGroups = [
             "quadriceps",
@@ -84,10 +85,46 @@ class musclesTableView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.headerView(forSection: section)
+        //return tableView.headerView(forSection: section)
+        return tableView.dequeueReusableCell(withIdentifier: "HeaderID")
     }
     
-
-
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200
+    }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //do stuff if user hits delete
+        }
+    }
+    
+    //I think I need to call this function, not write code in it
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        
+    }
+}
+
+class Header: UITableViewHeaderFooterView {
+    var editButton: UIButton
+    var displayEditingLabel: UILabel
+    
+    override init(reuseIdentifier: String?) {
+        editButton = UIButton()
+        displayEditingLabel = UILabel()
+        
+        super.init(reuseIdentifier: reuseIdentifier)
+        editButton.setTitle("Edit", for: .normal)
+        editButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        editButton.backgroundColor = ColorsForApp.backroundColor
+        editButton.frame = CGRect(x: 0, y: 100, width: 200, height: 50)
+        //editButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(editButton)
+        
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

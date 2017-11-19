@@ -13,6 +13,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     let displayName: UILabel
     let displayResistenceType: UILabel
     let displayMuscleGroup: UILabel
+    let displayExercisesAddedSucces: UILabel
     
     let typeExerciseName: UITextField
     let addMuscleGroupButton: UIButton
@@ -25,6 +26,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         displayName = UILabel()
         displayResistenceType = UILabel()
         displayMuscleGroup = UILabel()
+        displayExercisesAddedSucces = UILabel()
         
         typeExerciseName = UITextField()
         addMuscleGroupButton = UIButton()
@@ -32,12 +34,6 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         createExercise = UIButton()
 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        //THESE THINGS NEED TO GO INTO FUNCTIONS!!
-        
-        
-        //let centerX: CGFloat = screenSize.width / 2
-        //let centerY: CGFloat = screenSize.height / 2
         
         createLabels()
         createTextBox()
@@ -72,11 +68,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
             let exerciseToAdd = Exercise(name: exerciseName!, primaryMusclesUsed: musclesType!, resistenceType: resistenceType!)
             ExerciseStore.allExercises.append(exerciseToAdd)
             
-            //clear labels and display success
-            displayName.text = ""
-            displayMuscleGroup.text = "Exercise Added"
-            displayResistenceType.text = ""
-            typeExerciseName.text = ""
+            clearLabelsAndDisplaySucces()
             
             //for testing
             print("items in exercise array: \(ExerciseStore.allExercises.count)")
@@ -125,6 +117,8 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         self.view.addSubview(displayResistenceType)
         displayMuscleGroup.frame = CGRect(x: 0, y: 80, width: screenSize.width, height: 50)
         self.view.addSubview(displayMuscleGroup)
+        displayExercisesAddedSucces.frame = CGRect(x: 0, y: 95, width: screenSize.width, height: 50)
+        self.view.addSubview(displayExercisesAddedSucces)
     }
     
     func createTextBox() {
@@ -163,5 +157,17 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         addResistenceTypeButton.setTitleColor(ColorsForApp.textColor, for: .normal)
         addResistenceTypeButton.addTarget(self, action: #selector(addExerciseViewController.addResistenceTypePressed), for: UIControlEvents.touchUpInside)
         self.view.addSubview(addResistenceTypeButton)
+    }
+    
+    func clearLabelsAndDisplaySucces() {
+        displayName.text = ""
+        displayMuscleGroup.text = ""
+        displayResistenceType.text = ""
+        typeExerciseName.text = ""
+        displayExercisesAddedSucces.text = "Exercise Added"
+        //only want it to display for a few seconds
+        UIView.animate(withDuration: 3, animations: { () -> Void in
+            self.displayExercisesAddedSucces.alpha = 0
+        })
     }
 }

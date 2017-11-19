@@ -9,6 +9,7 @@
 import UIKit
 
 // has a UIView as top level view and need to subclass UITableView as a subview (so it's not the whole screen)
+// though maybe just using a header or footer might be a better way
 class AsYouGoWorkoutViewController: UIViewController {
     var topView: UIView
     var bottomTableView: UITableView
