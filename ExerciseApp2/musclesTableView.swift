@@ -22,7 +22,11 @@ class musclesTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Muscles Used"
-        tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "HeaderID")
+        
+
+        
+        
+        //tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "HeaderID")
                 
         dataMuscleGroups = [
             "quadriceps",
@@ -85,12 +89,45 @@ class musclesTableView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //return tableView.headerView(forSection: section)
-        return tableView.dequeueReusableCell(withIdentifier: "HeaderID")
+        //let myTableView = tableView.headerView(forSection: section)
+        //return tableView.dequeueReusableCell(withIdentifier: "HeaderID")
+        //let myButton = UIButton()
+        //myButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        //myButton.setTitle("Edit", for: .normal)
+        //myButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        //myButton.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        //self.view.addSubview(myButton)
+        //self.tableView.headerView.addSubview(myButton)
+        //myTableView?.addSubview(myButton)
+        //myTableView?.contentView.addSubview(myButton)
+        //myButton.translatesAutoresizingMaskIntoConstraints = false
+        //self.tableView.tableHeaderView?.addSubview(myButton)
+        //return myTableView
+        
+        let frame: CGRect = tableView.frame
+        //let DoneBut: UIButton = UIButton(frame: CGRect(x: 200, y: 0, width: 200, height: 50))
+        //DoneBut.setTitle("+", for: .normal)
+        //DoneBut.backgroundColor = UIColor.blue
+        //DoneBut.addTarget(self, action: #selector(DetailViewController.pressed(_:)), forControlEvents: .TouchUpInside)
+        //let headerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.height, height: frame.size.width))
+        //headerView.addSubview(DoneBut)
+        //return headerView
+        
+        //let myHeaderView = tableView.headerView(forSection: section)
+        let myButton = UIButton()
+        myButton.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
+        myButton.setTitle("+", for: .normal)
+        myButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        myButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        let myHeaderView: UIView = UIView()
+        myHeaderView.frame = CGRect(x: 0, y: 0, width: frame.size.height, height: frame.size.width)
+        myHeaderView.backgroundColor = UIColor.red
+        myHeaderView.addSubview(myButton)
+        return myHeaderView
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
+        return 50
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
