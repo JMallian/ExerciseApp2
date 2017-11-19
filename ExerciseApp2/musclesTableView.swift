@@ -22,7 +22,7 @@ class musclesTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Muscles Used"
-                        
+        
         dataMuscleGroups = [
             "anterior deltoids",
             "biceps",
@@ -75,6 +75,7 @@ class musclesTableView: UITableViewController {
             }
         }else if checkMarkCount == maxCheckMarkCount {
             //does nothing, user has to uncheck a check first to select this cell
+            //but I can't just do an if else so here's an empty else if??
         }else{
             myCell?.accessoryType = .checkmark
             checkMarkCount = checkMarkCount + 1
@@ -137,8 +138,27 @@ class musclesTableView: UITableViewController {
         }
     }
     
+    
+    //
+    //
+    //
+    // to do: check that it's not an empty String before adding and give a go back or whatever option in alert
     @objc func addButtonPressed() {
+        let alert = UIAlertController(title: "Add Muscle", message: "Type Muscle to Add", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            //textField.text = "type muscle here"
+        }
         
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            let textField = alert.textFields![0]
+            //add to array
+            self.dataMuscleGroups.append((textField.text)!) //need to check that it's not an emtpy String
+            //add to tableView
+            //let indexPath = indexPath
+            self.tableView.insertRows(at: [IndexPath(row: self.dataMuscleGroups.count - 1, section: 0)], with: .automatic)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
