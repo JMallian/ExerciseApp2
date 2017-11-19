@@ -22,34 +22,29 @@ class musclesTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Muscles Used"
-        
-
-        
-        
-        //tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "HeaderID")
-                
+                        
         dataMuscleGroups = [
-            "quadriceps",
+            "anterior deltoids",
+            "biceps",
+            "calves",
+            "deltoids",
+            "erectors",
+            "external obliques",
             "gluteals",
             "hamstrings",
-            "erectors",
-            "upper gluteals",
-            "deltoids",
-            "pectorals",
-            "triceps",
-            "upper trapezius",
-            "anterior deltoids",
+            "internal obliques",
+            "lateral deltoids",
             "lats",
             "midtraps",
-            "rhomboids",
-            "biceps",
+            "pectorals",
             "posterior deltoids",
-            "lateral deltoids",
-            "traps",
+            "quadriceps",
             "rectus abdominis",
-            "internal obliques",
-            "external obliques",
-            "calves"
+            "rhomboids",
+            "traps",
+            "triceps",
+            "upper gluteals",
+            "upper trapezius"
         ]
     }
     
@@ -88,41 +83,29 @@ class musclesTableView: UITableViewController {
         }
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //let myTableView = tableView.headerView(forSection: section)
-        //return tableView.dequeueReusableCell(withIdentifier: "HeaderID")
-        //let myButton = UIButton()
-        //myButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        //myButton.setTitle("Edit", for: .normal)
-        //myButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        //myButton.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
-        //self.view.addSubview(myButton)
-        //self.tableView.headerView.addSubview(myButton)
-        //myTableView?.addSubview(myButton)
-        //myTableView?.contentView.addSubview(myButton)
-        //myButton.translatesAutoresizingMaskIntoConstraints = false
-        //self.tableView.tableHeaderView?.addSubview(myButton)
-        //return myTableView
-        
         let frame: CGRect = tableView.frame
-        //let DoneBut: UIButton = UIButton(frame: CGRect(x: 200, y: 0, width: 200, height: 50))
-        //DoneBut.setTitle("+", for: .normal)
-        //DoneBut.backgroundColor = UIColor.blue
-        //DoneBut.addTarget(self, action: #selector(DetailViewController.pressed(_:)), forControlEvents: .TouchUpInside)
-        //let headerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.height, height: frame.size.width))
-        //headerView.addSubview(DoneBut)
-        //return headerView
         
-        //let myHeaderView = tableView.headerView(forSection: section)
-        let myButton = UIButton()
-        myButton.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
-        myButton.setTitle("+", for: .normal)
-        myButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        myButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        //need to make it more obvious that there are buttons here by adding some space between them
+        let editButton = UIButton()
+        editButton.frame = CGRect(x: 0, y: 0, width: frame.size.width/2, height: 50)
+        editButton.setTitle("Edit Muscle Groups", for: .normal)
+        editButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        editButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        editButton.addTarget(self, action: #selector(musclesTableView.editButtonPressed), for: UIControlEvents.touchUpInside)
+        let addButton = UIButton()
+        addButton.frame = CGRect(x: frame.size.width/2, y: 0, width: frame.size.width/2, height: 50)
+        addButton.setTitle("Add Muscle Group", for: .normal)
+        addButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        addButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        addButton.addTarget(self, action: #selector(musclesTableView.addButtonPressed), for: UIControlEvents.touchUpInside)
         let myHeaderView: UIView = UIView()
         myHeaderView.frame = CGRect(x: 0, y: 0, width: frame.size.height, height: frame.size.width)
         myHeaderView.backgroundColor = UIColor.red
-        myHeaderView.addSubview(myButton)
+        myHeaderView.addSubview(editButton)
+        myHeaderView.addSubview(addButton)
         return myHeaderView
     }
     
@@ -132,36 +115,31 @@ class musclesTableView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //do stuff if user hits delete
+            let musclesToDelete = dataMuscleGroups[indexPath.row]
+            let index = dataMuscleGroups.index(of: musclesToDelete)
+            dataMuscleGroups.remove(at: index!)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
-    //I think I need to call this function, not write code in it
+
     override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+    }
+    
+    @objc func editButtonPressed(sender: UIButton) {
+        if isEditing {
+            setEditing(false, animated: true)
+            sender.setTitle("Edit Muscle Groups", for: .normal)
+        }else{
+            setEditing(true, animated: true)
+            sender.setTitle("Done Editing", for: .normal)
+        }
+    }
+    
+    @objc func addButtonPressed() {
         
     }
 }
 
-class Header: UITableViewHeaderFooterView {
-    var editButton: UIButton
-    var displayEditingLabel: UILabel
-    
-    override init(reuseIdentifier: String?) {
-        editButton = UIButton()
-        displayEditingLabel = UILabel()
-        
-        super.init(reuseIdentifier: reuseIdentifier)
-        editButton.setTitle("Edit", for: .normal)
-        editButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        editButton.backgroundColor = ColorsForApp.backroundColor
-        editButton.frame = CGRect(x: 0, y: 100, width: 200, height: 50)
-        //editButton.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(editButton)
-        
 
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
