@@ -9,7 +9,8 @@
 import UIKit
 
 // has a UIView as top level view and need to subclass UITableView as a subview (so it's not the whole screen)
-// though maybe just using a header or footer might be a better way
+// though maybe just using a header or footer might be a better way - yes actually I should do it this way
+// and call self.tableView.tableFooterView = UIView() inside viewDidLoad so it looks good (gets ride of empty cells)
 class AsYouGoWorkoutViewController: UIViewController {
     var topView: UIView
     var bottomTableView: UITableView

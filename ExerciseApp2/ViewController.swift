@@ -10,53 +10,78 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let startNewButton: UIButton
-    let historyButton: UIButton
-    let createButton: UIButton
-    let addExerciseButton: UIButton
+    
+    private let buttonHeight: CGFloat = 100
+    private let spaceBetweenButtons: CGFloat = 20
+    private let buttonBothSidePadding: CGFloat = 10
+    
+    private let startNewButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Start New Workout", for: .normal)
+        button.backgroundColor = ColorsForApp.componentBackgroundColor
+        button.setTitleColor(ColorsForApp.textColor, for: .normal)
+        button.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let historyButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("History", for: .normal)
+        button.backgroundColor = ColorsForApp.componentBackgroundColor
+        button.setTitleColor(ColorsForApp.textColor, for: .normal)
+        //button.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let createButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Create Workout", for: .normal)
+        button.backgroundColor = ColorsForApp.componentBackgroundColor
+        button.setTitleColor(ColorsForApp.textColor, for: .normal)
+        //button.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let addExerciseButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Add Exercise", for: .normal)
+        button.backgroundColor = ColorsForApp.componentBackgroundColor
+        button.setTitleColor(ColorsForApp.textColor, for: .normal)
+        button.addTarget(self, action: #selector(ViewController.addExercisePressed), for: UIControlEvents.touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        startNewButton = UIButton()
-        historyButton = UIButton()
-        createButton = UIButton()
-        addExerciseButton = UIButton()
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        //button placement
-        let screenSize: CGSize = UIScreen.main.bounds.size
-        //let centerX: CGFloat = screenSize.width / 2
-        let centerY: CGFloat = screenSize.height / 2
-        startNewButton.frame = CGRect(x: 0, y: centerY - 175, width: screenSize.width, height: 50)
-        historyButton.frame = CGRect(x: 0, y: centerY - 75, width: screenSize.width, height: 50)
-        createButton.frame = CGRect(x: 0, y: centerY + 25, width: screenSize.width, height: 50)
-        addExerciseButton.frame = CGRect(x: 0, y: centerY + 125, width: screenSize.width, height: 50)
-        
-        //button titles
-        startNewButton.setTitle("Start New Workout", for: .normal)
-        historyButton.setTitle("History", for: .normal)
-        createButton.setTitle("Create Workout", for: .normal)
-        addExerciseButton.setTitle("Add Exercise", for: .normal)
-        
-        //button colors
-        startNewButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        historyButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        createButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        addExerciseButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        
-        startNewButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        historyButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        createButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        addExerciseButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        
-        //button functions
-        addExerciseButton.addTarget(self, action: #selector(ViewController.addExercisePressed), for: UIControlEvents.touchUpInside)
-        startNewButton.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)
-        
+
         self.view.addSubview(startNewButton)
+        startNewButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        startNewButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: buttonBothSidePadding).isActive = true
+        startNewButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -buttonBothSidePadding).isActive = true
+        startNewButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
+        
         self.view.addSubview(historyButton)
+        historyButton.topAnchor.constraint(equalTo: startNewButton.bottomAnchor, constant: spaceBetweenButtons).isActive = true
+        historyButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: buttonBothSidePadding).isActive = true
+        historyButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -buttonBothSidePadding).isActive = true
+        historyButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
+        
         self.view.addSubview(createButton)
+        createButton.topAnchor.constraint(equalTo: historyButton.bottomAnchor, constant: spaceBetweenButtons).isActive = true
+        createButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: buttonBothSidePadding).isActive = true
+        createButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -buttonBothSidePadding).isActive = true
+        createButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
+        
         self.view.addSubview(addExerciseButton)
+        addExerciseButton.topAnchor.constraint(equalTo: createButton.bottomAnchor, constant: spaceBetweenButtons).isActive = true
+        addExerciseButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: buttonBothSidePadding).isActive = true
+        addExerciseButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -buttonBothSidePadding).isActive = true
+        addExerciseButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +100,6 @@ class ViewController: UIViewController {
     }
     
     @objc func addExercisePressed() {
-        //self.present(addExerciseViewController(), animated: true, completion: nil)
         self.navigationController?.pushViewController(addExerciseViewController(), animated: true)
     }
     
