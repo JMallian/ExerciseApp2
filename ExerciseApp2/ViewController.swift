@@ -11,17 +11,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let buttonHeight: CGFloat = 100
-    private let spaceBetweenButtons: CGFloat = 20
-    private let buttonBothSidePadding: CGFloat = 10
-    
     private let startNewButton: UIButton = {
         let button = UIButton()
         button.setTitle("Start New Workout", for: .normal)
         button.backgroundColor = ColorsForApp.componentBackgroundColor
         button.setTitleColor(ColorsForApp.textColor, for: .normal)
         button.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false //prevents view from being framed underneath the navigation bar
         return button
     }()
     
@@ -54,13 +50,39 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Exercise App"
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // I did all this and I still don't know how to get the buttons to resize when the device is rotated
+        // but at least it looks the same on all screen sizes 
+        let navBarHeight = self.navigationController?.navigationBar.frame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        var viewHeight: CGFloat
+        if let unwrapped = navBarHeight { //is this even necessary?
+            viewHeight = UIScreen.main.bounds.height - unwrapped - statusBarHeight
+        }else{
+            viewHeight = UIScreen.main.bounds.height
+        }
+        let buttonHeight: CGFloat = viewHeight * 0.20
+        let spaceBetweenButtons: CGFloat = viewHeight * 0.04
+        let buttonBothSidePadding: CGFloat = 10
+        let topMostButtonPadding: CGFloat = viewHeight * 0.04 //this is only used once it's just nice to have it here
+        
         self.view.addSubview(startNewButton)
-        startNewButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        startNewButton.topAnchor.constraint(equalTo: view.topAnchor, constant: topMostButtonPadding).isActive = true
         startNewButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: buttonBothSidePadding).isActive = true
         startNewButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -buttonBothSidePadding).isActive = true
         startNewButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
@@ -84,16 +106,6 @@ class ViewController: UIViewController {
         addExerciseButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Exercise App"
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,7 +118,6 @@ class ViewController: UIViewController {
     @objc func startNewPressed() {
         self.navigationController?.pushViewController(ChooseWorkoutTypeViewController(), animated: true)
     }
-
-
+    
+    
 }
-

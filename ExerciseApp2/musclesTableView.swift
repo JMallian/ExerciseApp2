@@ -23,6 +23,7 @@ class musclesTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Muscles Used"
+        tableView.tableFooterView = UIView() //so it doesn't show empty cells in the footer 
         
         dataMuscleGroups = [
             "anterior deltoids",
