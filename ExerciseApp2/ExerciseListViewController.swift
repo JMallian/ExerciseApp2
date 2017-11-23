@@ -10,6 +10,7 @@ import UIKit
 
 class ExerciseListViewController: UITableViewController {
     let cellID = "cellID"
+    var exercises: [Exercise]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class ExerciseListViewController: UITableViewController {
         //tableView.separatorColor = UIColor(white: 1, alpha: 0.2)
         tableView.backgroundColor = ColorsForApp.backroundColor
         tableView.separatorColor = ColorsForApp.componentBackgroundColor
+        fetchExercises()
 
     }
     
@@ -35,10 +37,23 @@ class ExerciseListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ExerciseCell
+        let exercise = exercises?[indexPath.row]
+        cell.exercise = exercise
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if let count = exercises?.count {
+            return count
+        }
+        return 0
+    }
+    
+    func fetchExercises() {
+//        let e1 = Exercise(name: "Squat", primaryMusclesUsed: ["quads", "hamstrings"], resistenceType: "barbell")
+//        let e2 = Exercise(name: "Bench", primaryMusclesUsed: ["pecs", "uhh, arms"], resistenceType: "barbell")
+//        let e3 = Exercise(name: "arm blasters", primaryMusclesUsed: ["biceps", "triceps", "forearms"], resistenceType: "barbell")
+//        exercises = [e1, e2, e3]
+         exercises = ExerciseStore.allExercises
     }
 }

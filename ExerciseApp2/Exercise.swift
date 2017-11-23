@@ -32,5 +32,23 @@ class Exercise: NSObject, Comparable {
         return lhs.name == rhs.name
     }
     
+    func displayMusclesUsed() -> String {
+        var displayString = ""
+        for item in primaryMusclesUsed {
+            displayString = displayString + item + ", "
+        }
+        let result = String(displayString.dropLast(2))
+        return result
+    }
+    
+//    func passMusclesUsed(data: [String]) {
+////        var displayString = ""
+////        for item in data {
+////            displayString = displayString + item + ", "
+////        }
+////        let result = String(displayString.dropLast(2))
+////        displayMuscleGroup.text = result
+////    }
+    
     
 }

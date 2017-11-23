@@ -10,9 +10,17 @@ import UIKit
 
 class ExerciseCell: UITableViewCell {
     
+    var exercise: Exercise? {
+        didSet {
+            exerciseLabel.text = exercise?.name
+            resistenceTypeLabel.text = exercise?.resistenceType
+            musclesUsedLabel.text = exercise?.displayMusclesUsed()
+        }
+    }
+    
     private let exerciseLabel: UILabel = {
         let label = UILabel()
-        label.text = "squat"
+        //label.text = "squat"
         //label.backgroundColor = .purple
         label.textColor = ColorsForApp.textColor
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +29,7 @@ class ExerciseCell: UITableViewCell {
     
     private let resistenceTypeLabel: UILabel = {
         let label = UILabel()
-        label.text = "barbell"
+        //label.text = "barbell"
         //label.backgroundColor = .green
         label.textColor = ColorsForApp.textColor
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +38,7 @@ class ExerciseCell: UITableViewCell {
     
     private let musclesUsedLabel: UILabel = {
         let label = UILabel()
-        label.text = "quads, hamstrings, glutes"
+        //label.text = "quads, hamstrings, glutes"
         //label.backgroundColor = .yellow
         label.textColor = ColorsForApp.textColor
         label.translatesAutoresizingMaskIntoConstraints = false
