@@ -39,7 +39,8 @@ class resistenceTypeTableView: UITableViewController {
             "Bodyweight",
             "Counter-Weight",
             "Dumbbell",
-            "Resistence Band"
+            "Resistence Band",
+            "Machine"
         ]
         tableView.backgroundColor = ColorsForApp.backroundColor
         tableView.separatorColor = ColorsForApp.componentBackgroundColor

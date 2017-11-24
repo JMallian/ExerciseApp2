@@ -24,6 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appNavController = UINavigationController(rootViewController: ViewController())
         window?.rootViewController = appNavController
         //window?.rootViewController = ViewController(nibName: nil, bundle: nil)
+        
+        //add some exercises for testing purposes and whatnot
+        let squat = Exercise(name: "squat", primaryMusclesUsed: ["quads", "hamstrings", "glutes"], resistenceType: "Barbell")
+        let bench = Exercise(name: "bench", primaryMusclesUsed: ["pecs"], resistenceType: "Barbell")
+        let deadlift = Exercise(name: "Deadlift", primaryMusclesUsed: ["hamstrings", "glutes", "back"], resistenceType: "Barbell")
+        let pushup = Exercise(name: "Pushup", primaryMusclesUsed: ["pecs", "biceps"], resistenceType: "bodyweight")
+        let gluteBridge = Exercise(name: "Glute Bridge", primaryMusclesUsed: ["glutes"], resistenceType: "bodyweight")
+        let gluteBridgeBarbell = Exercise(name: "Barbell Glute Bridge", primaryMusclesUsed: ["glutes"], resistenceType: "Barbell")
+        ExerciseStore.allExercises.append(squat)
+        ExerciseStore.allExercises.append(bench)
+        ExerciseStore.allExercises.append(deadlift)
+        ExerciseStore.allExercises.append(pushup)
+        ExerciseStore.allExercises.append(gluteBridge)
+        ExerciseStore.allExercises.append(gluteBridgeBarbell)
+        
         return true
     }
 
