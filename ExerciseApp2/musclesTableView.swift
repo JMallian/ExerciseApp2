@@ -23,7 +23,9 @@ class musclesTableView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Muscles Used"
-        tableView.tableFooterView = UIView() //so it doesn't show empty cells in the footer 
+        tableView.tableFooterView = UIView() //so it doesn't show empty cells in the footer
+        tableView.backgroundColor = ColorsForApp.backroundColor
+        tableView.separatorColor = ColorsForApp.componentBackgroundColor
         
         dataMuscleGroups = [
             "anterior deltoids",
@@ -57,6 +59,7 @@ class musclesTableView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: "cellID")
         myCell.textLabel?.text = dataMuscleGroups[indexPath.row]
+        myCell.backgroundColor = .clear
         
         return myCell
     }

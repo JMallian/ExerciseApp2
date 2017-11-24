@@ -15,6 +15,5 @@ class Workout {
     init(exerciseSet: [ExerciseSet]) {
         self.dateCreated = Date()
         self.exerciseSet = exerciseSet
-
     }
 }

@@ -25,10 +25,11 @@ class ExerciseListViewController: UITableViewController {
 
     }
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //go on down to the next viewController
-        print("click on exercise")
+        let selectedExercise = self.exercises?[indexPath.row]
+        let nextViewController = repsController()
+        nextViewController.exercise = selectedExercise
+        self.navigationController?.pushViewController(nextViewController, animated: true)        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -50,10 +51,6 @@ class ExerciseListViewController: UITableViewController {
     }
     
     func fetchExercises() {
-//        let e1 = Exercise(name: "Squat", primaryMusclesUsed: ["quads", "hamstrings"], resistenceType: "barbell")
-//        let e2 = Exercise(name: "Bench", primaryMusclesUsed: ["pecs", "uhh, arms"], resistenceType: "barbell")
-//        let e3 = Exercise(name: "arm blasters", primaryMusclesUsed: ["biceps", "triceps", "forearms"], resistenceType: "barbell")
-//        exercises = [e1, e2, e3]
          exercises = ExerciseStore.allExercises
     }
 }

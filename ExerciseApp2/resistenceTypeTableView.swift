@@ -36,11 +36,15 @@ class resistenceTypeTableView: UITableViewController {
         self.title = "Select Resistence Type"
         resistenceTypeData = [
             "Barbell",
-            "Bodyweight Exercise",
+            "Bodyweight",
             "Counter-Weight",
             "Dumbbell",
             "Resistence Band"
         ]
+        tableView.backgroundColor = ColorsForApp.backroundColor
+        tableView.separatorColor = ColorsForApp.componentBackgroundColor
+        tableView.tableFooterView = UIView()
+        
     }
     
     
@@ -52,6 +56,7 @@ class resistenceTypeTableView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = UITableViewCell(style: .default, reuseIdentifier: "cellID")
         myCell.textLabel?.text = resistenceTypeData[indexPath.row]
+        myCell.backgroundColor = .clear
         
         return myCell
     }
