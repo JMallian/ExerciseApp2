@@ -25,6 +25,7 @@ class AsYouGoWorkoutViewController: UITableViewController {
         return header
     }
     
+    //is this needed? 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 50
     }

@@ -39,6 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ExerciseStore.allExercises.append(gluteBridge)
         ExerciseStore.allExercises.append(gluteBridgeBarbell)
         
+        let set1 = ExerciseSet(name: "squat", resistenceType: "Barbell", weight: 90, reps: 3)
+        let set2 = ExerciseSet(name: "squat", resistenceType: "Barbell", weight: 90, reps: 3)
+        let set3 = ExerciseSet(name: "squat", resistenceType: "Barbell", weight: 90, reps: 3)
+        
+        let set4 = ExerciseSet(name: "deadlift", resistenceType: "barbell", weight: 115, reps: 10)
+        let set5 = ExerciseSet(name: "deadlift", resistenceType: "barbell", weight: 115, reps: 10)
+        
+        let workout1 = Workout(exerciseSet: [set1, set2, set3, set4, set5])
+        WorkoutStore.allWorkouts.append(workout1)
+        
+        
         return true
     }
 

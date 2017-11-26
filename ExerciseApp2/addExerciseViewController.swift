@@ -60,7 +60,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     @objc func createExercisePressed() {
         //makes an instance of an exercise class and adds it to the store of exercises!
         //button only does things if labels have data
-        if (displayMuscleGroup.text != nil && displayResistenceType.text != nil && displayName.text != nil) {
+        if (displayMuscleGroup.text != "" && displayResistenceType.text != "" && displayName.text != "") {
             let exerciseName = displayName.text
             let resistenceType = displayResistenceType.text
             let stringToSplit = displayMuscleGroup.text
