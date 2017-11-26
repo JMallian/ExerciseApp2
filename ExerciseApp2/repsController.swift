@@ -16,6 +16,7 @@ import UIKit
 class repsController: UITableViewController, UITextFieldDelegate {
     
     var exercise: Exercise?
+    var set: [ExerciseSet] = [ExerciseSet]()
     var cellID = "cellID"
     var weightString: String?
     var repsString: String?
@@ -51,12 +52,12 @@ class repsController: UITableViewController, UITextFieldDelegate {
         }
         weightTextfield.delegate = self
         repsTextfield.delegate = self
+        
+        tableView.register(RepCell.self, forCellReuseIdentifier: cellID)
 
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorsForApp.backroundColor
         tableView.separatorColor = ColorsForApp.componentBackgroundColor
-        
-
     }
     
     // for the love of god, make a new file for this
@@ -91,8 +92,6 @@ class repsController: UITableViewController, UITextFieldDelegate {
             return button
         }()
         
-
-        
         header.addSubview(weightLabel)
         weightLabel.leftAnchor.constraint(equalTo: header.leftAnchor, constant: 8).isActive = true
         weightLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 8).isActive = true
@@ -123,9 +122,6 @@ class repsController: UITableViewController, UITextFieldDelegate {
         saveButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
         saveButton.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -8).isActive = true
         
-        
-
-        
         return header
     }
     
@@ -138,9 +134,52 @@ class repsController: UITableViewController, UITextFieldDelegate {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return set.count
+    }
+    
+    
     @objc func savePressed() {
         if weightTextfield.text != "" && repsTextfield.text != "" {
             print("good to go" )
+            var weight: Int
+            if let num1 = Int(weightTextfield.text!){
+                weight = num1
+            }else{
+                weight = 0
+            }
+            var reps: Int
+            if let num2 = Int(repsTextfield.text!){
+                reps = num2
+            }else{
+                reps = 0
+            }
+            var name: String
+            if let unwrapped = exercise?.name {
+                name = unwrapped
+            }else{
+                name = "somehow I don't exist"
+            }
+            var resistence: String
+            if let unwrapped2 = exercise?.resistenceType {
+                resistence = unwrapped2
+            }else{
+                resistence = "somehow I don't exist"
+            }
+            let createdSet = ExerciseSet(name: name, resistenceType: resistence, weight: weight, reps: reps)
+            set.append(createdSet)
+            weightTextfield.text = ""
+            repsTextfield.text = ""
+            
+            tableView.beginUpdates()
+            tableView.insertRows(at: [IndexPath(row: set.count-1, section: 0)], with: .automatic)
+            tableView.endUpdates()
+
+            //tableView.reloadRows(at: [IndexPath](), with: .left)
         }
     }
     
@@ -148,12 +187,11 @@ class repsController: UITableViewController, UITextFieldDelegate {
         //tags: 1 is weight, 2 is reps
         if textField.tag == 1 {
             self.weightTextfield.resignFirstResponder()
-            weightString = weightTextfield.text
+            //weightString = weightTextfield.text
         }else{
             self.repsTextfield.resignFirstResponder()
-            repsString = repsTextfield.text
+            //repsString = repsTextfield.text
         }
-        
         return true
     }
     
