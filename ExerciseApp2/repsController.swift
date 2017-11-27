@@ -131,6 +131,7 @@ class repsController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! RepCell
+        cell.setDisplay(display: "\(weightString ?? "this should have a value") x \(repsString ?? "this should have a value")")
         return cell
     }
     
@@ -144,8 +145,11 @@ class repsController: UITableViewController, UITextFieldDelegate {
     
     
     @objc func savePressed() {
+        // to do: make sure only numbers exist in the text fields 
         if weightTextfield.text != "" && repsTextfield.text != "" {
             print("good to go" )
+            weightString = weightTextfield.text
+            repsString = repsTextfield.text
             var weight: Int
             if let num1 = Int(weightTextfield.text!){
                 weight = num1
@@ -179,7 +183,6 @@ class repsController: UITableViewController, UITextFieldDelegate {
             tableView.insertRows(at: [IndexPath(row: set.count-1, section: 0)], with: .automatic)
             tableView.endUpdates()
 
-            //tableView.reloadRows(at: [IndexPath](), with: .left)
         }
     }
     
@@ -195,6 +198,16 @@ class repsController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
+    // this is called when the back button of a UINavigationController is hit (thanks StackOverflow!) 
+    override func viewWillDisappear(_ animated : Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParentViewController {
+            print("back button hit")
+            //if there is stuff in the array then it should be saved as an exercise in the workout
+            
+        }
+    }
 
     
 }
