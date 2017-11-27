@@ -27,16 +27,26 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
         tableView.reloadData()
     }
     
+    // at this point I'm not sure why I felt I needed a header
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = .red
+        header.backgroundColor = ColorsForApp.backroundColor
         return header
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! WorkoutCell
         //let exercise = exercises?[indexPath.row]
-        //cell.exercise = exercise
+        let exerciseSet = ongoingWorkout?.getSets()[indexPath.row]
+        if let nameUnwrapped = exerciseSet?.getName() {
+            cell.setName(name: nameUnwrapped)
+        }
+        if let resistenceUnwrapped = exerciseSet?.getResistenceType() {
+            cell.setResistence(resistence: resistenceUnwrapped)
+        }
+        if let weightUnwrapped = exerciseSet?.getWeight(), let repsUnwrapped = exerciseSet?.getReps() {
+            cell.setSet(set: "\(weightUnwrapped) X \(repsUnwrapped)")
+        }
         return cell
     }
     
@@ -69,16 +79,62 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
 
 class WorkoutCell: UITableViewCell {
     
+    private var nameDisplay: UILabel
+    private var resistenceDisplay: UILabel
+    private var setDisplay: UILabel
+
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        nameDisplay = UILabel()
+        resistenceDisplay = UILabel()
+        setDisplay = UILabel()
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        //backgroundColor = .clear
-        backgroundColor = .purple
+        backgroundColor = .clear
         
+        nameDisplay.textColor = ColorsForApp.textColor
+        nameDisplay.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(nameDisplay)
+        nameDisplay.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+        nameDisplay.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        nameDisplay.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        nameDisplay.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        resistenceDisplay.textColor = ColorsForApp.textColor
+        resistenceDisplay.textAlignment = NSTextAlignment.right
+        resistenceDisplay.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(resistenceDisplay)
+        resistenceDisplay.leftAnchor.constraint(equalTo: nameDisplay.rightAnchor, constant: 8).isActive = true
+        resistenceDisplay.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        resistenceDisplay.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
+        resistenceDisplay.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        setDisplay.textColor = ColorsForApp.textColor
+        setDisplay.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(setDisplay)
+        setDisplay.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+        setDisplay.topAnchor.constraint(equalTo: nameDisplay.bottomAnchor, constant: 0).isActive = true
+        setDisplay.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
+        setDisplay.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // ideally the name (ex squat) would be a section and not be listed in every cell, but, baby steps
+    func setName(name: String) {
+        nameDisplay.text = name
+    }
+    
+    func setResistence(resistence: String) {
+        resistenceDisplay.text = resistence
+    }
+    
+    func setSet(set: String) {
+        setDisplay.text = set
+    }
+    
 }

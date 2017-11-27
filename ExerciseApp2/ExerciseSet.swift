@@ -22,4 +22,20 @@ class ExerciseSet {
         self.reps = reps
     }
     
+    func getName() -> String{
+        return name
+    }
+    
+    func getResistenceType() -> String {
+        return resistenceType
+    }
+    
+    func getWeight() -> Int {
+        return weight
+    }
+    
+    func getReps() -> Int {
+        return reps
+    }
+    
 }
