@@ -145,7 +145,10 @@ class repsController: UITableViewController, UITextFieldDelegate {
     
     
     @objc func savePressed() {
-        // to do: make sure only numbers exist in the text fields 
+        // to do: make sure only numbers exist in the text fields
+        if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: weightTextfield.text!)) && CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: repsTextfield.text!)) {
+            print("only numbers here" )
+        }
         if weightTextfield.text != "" && repsTextfield.text != "" {
             print("good to go" )
             weightString = weightTextfield.text
