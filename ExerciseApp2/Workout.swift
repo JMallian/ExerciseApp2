@@ -10,10 +10,22 @@ import Foundation
 
 class Workout {
     private let dateCreated: Date
-    private let exerciseSet: [ExerciseSet]
+    private var exerciseSet: [ExerciseSet]
     
     init(exerciseSet: [ExerciseSet]) {
         self.dateCreated = Date()
         self.exerciseSet = exerciseSet
+    }
+    
+    func addSet(set: ExerciseSet) {
+        exerciseSet.append(set)
+    }
+    
+    func addArrayOfSets(arrayOfSets: [ExerciseSet]) {
+        exerciseSet.append(contentsOf: arrayOfSets)
+    }
+    
+    func getSets() -> [ExerciseSet] {
+        return exerciseSet
     }
 }

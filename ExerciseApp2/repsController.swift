@@ -13,8 +13,13 @@
 
 import UIKit
 
+protocol repsControllerDelegate: class {
+    func passDataBack(data: [ExerciseSet])
+}
+
 class repsController: UITableViewController, UITextFieldDelegate {
     
+    weak var delegate: repsControllerDelegate? //I don't quite understand weak keyword, but the article I read said to use it for delegates
     var exercise: Exercise?
     var set: [ExerciseSet] = [ExerciseSet]()
     var cellID = "cellID"
@@ -208,6 +213,10 @@ class repsController: UITableViewController, UITextFieldDelegate {
         if self.isMovingFromParentViewController {
             print("back button hit")
             //if there is stuff in the array then it should be saved as an exercise in the workout
+            if set.count != 0 {
+                delegate?.passDataBack(data: set)
+                print("passing data backwards!")
+            }
             
         }
     }

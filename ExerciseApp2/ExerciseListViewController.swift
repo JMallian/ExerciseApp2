@@ -11,6 +11,7 @@ import UIKit
 class ExerciseListViewController: UITableViewController {
     let cellID = "cellID"
     var exercises: [Exercise]?
+    var whereICameFrom: UIViewController? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class ExerciseListViewController: UITableViewController {
         let selectedExercise = self.exercises?[indexPath.row]
         let nextViewController = repsController()
         nextViewController.exercise = selectedExercise
+        nextViewController.delegate = whereICameFrom as? repsControllerDelegate 
         self.navigationController?.pushViewController(nextViewController, animated: true)        
     }
     

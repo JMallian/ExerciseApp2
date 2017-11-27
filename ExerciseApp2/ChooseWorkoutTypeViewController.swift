@@ -44,6 +44,10 @@ class ChooseWorkoutTypeViewController: UIViewController {
     }
     
     @objc func chooseAddExerciesAsYouGoClicked() {
-        self.navigationController?.pushViewController(AsYouGoWorkoutViewController(), animated: true)
+        //create a workout and let next view know about it
+        let workout = Workout(exerciseSet: [ExerciseSet]())
+        let nextView = AsYouGoWorkoutViewController()
+        nextView.ongoingWorkout = workout 
+        self.navigationController?.pushViewController(nextView, animated: true)
     }
 }
