@@ -23,66 +23,36 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
         //tableView.register(WorkoutCell.self, forCellReuseIdentifier: cellID)
         tableView.tableFooterView = UIView()
         tableView.register(WorkoutCell.self, forCellReuseIdentifier: cellID)
+        tableView.backgroundColor = ColorsForApp.componentBackgroundColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     
-    // at this point I'm not sure why I felt I needed a header
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView()
-        header.backgroundColor = ColorsForApp.backroundColor
-        let exerciseName = UILabel()
-        exerciseName.text = rowsOfExerciseAndSets[section][0]
-        exerciseName.textColor = ColorsForApp.textColor
-        exerciseName.translatesAutoresizingMaskIntoConstraints = false
-        header.addSubview(exerciseName)
-        exerciseName.leadingAnchor.constraint(equalTo: header.leadingAnchor).isActive = true
-        exerciseName.trailingAnchor.constraint(equalTo: header.trailingAnchor).isActive = true
-        exerciseName.heightAnchor.constraint(equalTo: header.heightAnchor, multiplier: 0.60).isActive = true
-        exerciseName.topAnchor.constraint(equalTo: header.topAnchor, constant: 5).isActive = true
-        print(exerciseName.text ?? "hi")
-        return header
-    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! WorkoutCell
-        //let exercise = exercises?[indexPath.row]
-        //let exerciseSet = ongoingWorkout?.getSets()[indexPath.row]
-//        if let nameUnwrapped = exerciseSet?.getName() {
-//            cell.setName(name: nameUnwrapped)
-//        }
-//        if let resistenceUnwrapped = exerciseSet?.getResistenceType() {
-//            cell.setResistence(resistence: resistenceUnwrapped)
-//        }
-//        if let weightUnwrapped = exerciseSet?.getWeight(), let repsUnwrapped = exerciseSet?.getReps() {
-//            cell.setSet(set: "\(weightUnwrapped) X \(repsUnwrapped)")
-//        }
+
         cell.setName(name: rowsOfExerciseAndSets[indexPath.section][indexPath.row])
+        if indexPath.row == 0 {
+            cell.backgroundColor = .purple
+        }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if let count = ongoingWorkout?.getSets().count {
-//            return count
-//        }
-//        return 0
-        return rowsOfExerciseAndSets[section].count //the first element is the name of exercise which is being displayed as a header
+
+        return rowsOfExerciseAndSets[section].count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return rowsOfExerciseAndSets.count
-        //return 0
     }
     
     
@@ -96,31 +66,6 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
     //do stuff with data from RepsController
     func passDataBack(data: [ExerciseSet]) {
         ongoingWorkout?.addArrayOfSets(arrayOfSets: data)
-        //add name of exercise to section array
-        //add reps (120 x 5, etc.) to reps array - a 3D array, the rows in 3D array correlate to name
-        //exerciseName.append(data[0].getName())
-        //make an array of reps from [ExerciseSet]
-//        var justTheNumbers = [String]()
-//        for item in data {
-//            let myString = "\(item.getWeight()) X \(item.getReps())"
-//            justTheNumbers.append(myString)
-//        }
-//        repsOfExercises.append(justTheNumbers)
-//
-//        //for testing
-//        print("names in array: ")
-//        for item in exerciseName {
-//            print(item)
-//        }
-//        print("array.count: \(repsOfExercises.count)")
-//        for row in repsOfExercises {
-//            print(row.count)
-//            for item in row {
-//                print(item)
-//            }
-//        }
-        
-        //well that was fun but actually I should be making one 2D array:
         // ["squat", ["90 X 5"], ["90 X 5"], ["90 X 5"],
         // ["deadlift", ["140 X 1"], ["140 X 1"] etc.
         // data is an array of ExerciseSets
@@ -140,9 +85,6 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
             }
         }
     }
-    
-    
-
 }
 
 class WorkoutCell: UITableViewCell {
