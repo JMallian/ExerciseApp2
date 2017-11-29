@@ -33,19 +33,32 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
     }
     
     
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! WorkoutCell
+//
+//        cell.setName(name: rowsOfExerciseAndSets[indexPath.section][indexPath.row])
+//        cell.setResistence(resistence: "Section:\(indexPath.section) Row:\(indexPath.row)")
+//        //sometimes this makes a cell whose indexPath does not equal 0 (as indicated by above) change backgroundcolor and
+//        //I cannot figure out why
+//        //is it possible it only happens when there's enough cells that they go offscreen?
+//        if indexPath.row == 0 {
+//            cell.backgroundColor = ColorsForApp.componentBackgroundColor
+//        }
+//        return cell
+//    }
+    
+    //cannot recreate the issue if I'm not using dequeueReusableCell, it occurs to me that I need to change the color to .clear if the
+    //cell is not at indexPath.row because that cell may have been previously changed to blue and then reused???
+    //I mean, that makes sense right? 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! WorkoutCell
-
-        cell.setName(name: rowsOfExerciseAndSets[indexPath.section][indexPath.row])
-        cell.setResistence(resistence: "Section:\(indexPath.section) Row:\(indexPath.row)")
-        //sometimes this makes a cell whose indexPath does not equal 0 (as indicated by above) change backgroundcolor and
-        //I cannot figure out why
-        //is it possible it only happens when there's enough cells that they go offscreen? 
+        let myCell = UITableViewCell(style: .default, reuseIdentifier: cellID)
+        myCell.textLabel?.text = rowsOfExerciseAndSets[indexPath.section][indexPath.row]
+        myCell.backgroundColor = .clear
         if indexPath.row == 0 {
-            cell.backgroundColor = ColorsForApp.componentBackgroundColor
+            myCell.backgroundColor = ColorsForApp.componentBackgroundColor
         }
         
-        return cell
+        return myCell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
