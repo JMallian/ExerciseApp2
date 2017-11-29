@@ -22,6 +22,7 @@ class ExerciseListViewController: UITableViewController {
         //tableView.separatorColor = UIColor(white: 1, alpha: 0.2)
         tableView.backgroundColor = ColorsForApp.backroundColor
         tableView.separatorColor = ColorsForApp.componentBackgroundColor
+        tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         fetchExercises()
 
     }

@@ -20,14 +20,16 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
         super.viewDidLoad()
         navigationItem.title = "Workout"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Exercise", style: .plain, target: self, action: #selector(AsYouGoWorkoutViewController.addExerciseButtonPressed))
-        //tableView.register(WorkoutCell.self, forCellReuseIdentifier: cellID)
         tableView.tableFooterView = UIView()
         tableView.register(WorkoutCell.self, forCellReuseIdentifier: cellID)
-        tableView.backgroundColor = ColorsForApp.componentBackgroundColor
+        tableView.backgroundColor = ColorsForApp.backroundColor
+        tableView.separatorColor = ColorsForApp.componentBackgroundColor
+        tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0) //makes seperator extend all the way to the sides
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+        print("reloading data")
     }
     
     
@@ -35,8 +37,12 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! WorkoutCell
 
         cell.setName(name: rowsOfExerciseAndSets[indexPath.section][indexPath.row])
+        cell.setResistence(resistence: "Section:\(indexPath.section) Row:\(indexPath.row)")
+        //sometimes this makes a cell whose indexPath does not equal 0 (as indicated by above) change backgroundcolor and
+        //I cannot figure out why
+        //is it possible it only happens when there's enough cells that they go offscreen? 
         if indexPath.row == 0 {
-            cell.backgroundColor = .purple
+            cell.backgroundColor = ColorsForApp.componentBackgroundColor
         }
         
         return cell
@@ -48,7 +54,7 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 40
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -94,6 +100,7 @@ class WorkoutCell: UITableViewCell {
     private var setDisplay: UILabel
 
     
+    //layout needs to be updated since I changed info shown
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         nameDisplay = UILabel()
         resistenceDisplay = UILabel()

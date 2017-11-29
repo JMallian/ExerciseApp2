@@ -26,6 +26,7 @@ class musclesTableView: UITableViewController {
         tableView.tableFooterView = UIView() //so it doesn't show empty cells in the footer
         tableView.backgroundColor = ColorsForApp.backroundColor
         tableView.separatorColor = ColorsForApp.componentBackgroundColor
+        tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         
         dataMuscleGroups = [
             "anterior deltoids",

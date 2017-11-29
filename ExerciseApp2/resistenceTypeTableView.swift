@@ -44,6 +44,7 @@ class resistenceTypeTableView: UITableViewController {
         ]
         tableView.backgroundColor = ColorsForApp.backroundColor
         tableView.separatorColor = ColorsForApp.componentBackgroundColor
+        tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         tableView.tableFooterView = UIView()
         
     }
