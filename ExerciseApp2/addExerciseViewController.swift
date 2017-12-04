@@ -21,7 +21,11 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     let addResistenceTypeButton: UIButton
     let createExercise: UIButton
     
-    let screenSize: CGSize = UIScreen.main.bounds.size
+    //let screenSize: CGSize = UIScreen.main.bounds.size
+    let spaceBetweenLables: CGFloat = 5
+    let multiplierForLabelHeight: CGFloat = 0.05
+    let spaceBetweenNonLables: CGFloat = 10
+    let multiplierForNonLabelHeight: CGFloat = 0.15
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         displayName = UILabel()
@@ -35,6 +39,14 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         createExercise = UIButton()
 
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.view.addSubview(displayExercisesAddedSucces)
+        self.view.addSubview(displayName)
+        self.view.addSubview(displayResistenceType)
+        self.view.addSubview(displayMuscleGroup)
+        self.view.addSubview(typeExerciseName)
+        self.view.addSubview(addResistenceTypeButton)
+        self.view.addSubview(addMuscleGroupButton)
+        self.view.addSubview(createExercise)
         
         createLabels()
         createTextBox()
@@ -61,19 +73,16 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     @objc func createExercisePressed() {
         //makes an instance of an exercise class and adds it to the store of exercises
         //button only does things if labels have data
-        if (displayMuscleGroup.text != "" && displayResistenceType.text != "" && displayName.text != "") {
+        if (displayMuscleGroup.text != "" && displayResistenceType.text != "" && displayName.text != "") { //don't add empty strings
             let exerciseName = displayName.text
             let resistenceType = displayResistenceType.text
             let stringToSplit = displayMuscleGroup.text
-            let musclesType = stringToSplit?.components(separatedBy: " ,") //not sure if this is what I want
-            let exerciseToAdd = Exercise(name: exerciseName!, primaryMusclesUsed: musclesType!, resistenceType: resistenceType!)
-            ExerciseStore.allExercises.append(exerciseToAdd)
-            
-            clearLabelsAndDisplaySucces()
-            
-            //for testing
-//            print("items in exercise array: \(ExerciseStore.allExercises.count)")
-//            ExerciseStore.printExercises()
+            if exerciseName != nil && resistenceType != nil && stringToSplit != nil { //makeing sure the ! don't cause a crash
+                let musclesType = stringToSplit?.components(separatedBy: " ,") //not sure if this is what I want
+                let exerciseToAdd = Exercise(name: exerciseName!, primaryMusclesUsed: musclesType!, resistenceType: resistenceType!)
+                ExerciseStore.allExercises.append(exerciseToAdd)
+                clearLabelsAndDisplaySucces()
+            }
         }
     }
     
@@ -112,79 +121,80 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     }
     
     func createLabels() {
-        //displayName.frame = CGRect(x: 0, y: 50, width: screenSize.width, height: 50)
-        self.view.addSubview(displayExercisesAddedSucces)
-        self.view.addSubview(displayName)
-        self.view.addSubview(displayResistenceType)
-        self.view.addSubview(displayMuscleGroup)
-        
         displayName.translatesAutoresizingMaskIntoConstraints = false
         displayName.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         displayName.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        displayName.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
-        displayName.topAnchor.constraint(equalTo: displayExercisesAddedSucces.bottomAnchor, constant: 5).isActive = true
+        displayName.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplierForLabelHeight).isActive = true
+        displayName.topAnchor.constraint(equalTo: displayExercisesAddedSucces.bottomAnchor, constant: spaceBetweenLables).isActive = true
         
-        //displayResistenceType.frame = CGRect(x: 0, y: 65, width: screenSize.width, height: 50)
         displayResistenceType.translatesAutoresizingMaskIntoConstraints = false
-
         displayResistenceType.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         displayResistenceType.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        displayResistenceType.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
-        displayResistenceType.topAnchor.constraint(equalTo: displayName.bottomAnchor, constant: 5).isActive = true
+        displayResistenceType.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplierForLabelHeight).isActive = true
+        displayResistenceType.topAnchor.constraint(equalTo: displayName.bottomAnchor, constant: spaceBetweenLables).isActive = true
         
-        //displayMuscleGroup.frame = CGRect(x: 0, y: 80, width: screenSize.width, height: 50)
         displayMuscleGroup.translatesAutoresizingMaskIntoConstraints = false
-        
         displayMuscleGroup.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         displayMuscleGroup.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        displayMuscleGroup.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
-        displayMuscleGroup.topAnchor.constraint(equalTo: displayResistenceType.bottomAnchor, constant: 5).isActive = true
+        displayMuscleGroup.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplierForLabelHeight).isActive = true
+        displayMuscleGroup.topAnchor.constraint(equalTo: displayResistenceType.bottomAnchor, constant: spaceBetweenLables).isActive = true
         
-        //displayExercisesAddedSucces.frame = CGRect(x: 0, y: 95, width: screenSize.width, height: 50)
         displayExercisesAddedSucces.translatesAutoresizingMaskIntoConstraints = false
-        //self.view.addSubview(displayExercisesAddedSucces)
         displayExercisesAddedSucces.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         displayExercisesAddedSucces.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        displayExercisesAddedSucces.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
-        displayExercisesAddedSucces.topAnchor.constraint(equalTo: view.topAnchor, constant: 5).isActive = true
+        displayExercisesAddedSucces.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplierForLabelHeight).isActive = true
+        displayExercisesAddedSucces.topAnchor.constraint(equalTo: view.topAnchor, constant: spaceBetweenLables).isActive = true
     }
     
     func createTextBox() {
-        typeExerciseName.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height/2 - 175, width: screenSize.width, height: 50)
         typeExerciseName.textAlignment = NSTextAlignment.center
         typeExerciseName.placeholder = "Type Exercise Name"
         typeExerciseName.textColor = ColorsForApp.textColor
         typeExerciseName.backgroundColor = ColorsForApp.componentBackgroundColor
         typeExerciseName.borderStyle = UITextBorderStyle.bezel
         typeExerciseName.delegate = self
-        self.view.addSubview(typeExerciseName)
-    }
-    
-    func createExerciseButton() {
-        createExercise.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height/2 + 125, width: screenSize.width, height: 50)
-        createExercise.setTitle("Create Exercise", for: .normal)
-        createExercise.backgroundColor = ColorsForApp.componentBackgroundColor
-        createExercise.setTitleColor(ColorsForApp.textColor, for: .normal)
-        createExercise.addTarget(self, action: #selector(addExerciseViewController.createExercisePressed), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(createExercise)
-    }
-    
-    func createAddMuscleGroupButton() {
-        addMuscleGroupButton.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height/2 + 25, width: screenSize.width, height: 50)
-        addMuscleGroupButton.setTitle("Add Muscles Used", for: .normal)
-        addMuscleGroupButton.backgroundColor = ColorsForApp.componentBackgroundColor
-        addMuscleGroupButton.setTitleColor(ColorsForApp.textColor, for: .normal)
-        addMuscleGroupButton.addTarget(self, action: #selector(addExerciseViewController.addMuscleGroupPressed), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(addMuscleGroupButton)
+        typeExerciseName.translatesAutoresizingMaskIntoConstraints = false
+        typeExerciseName.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        typeExerciseName.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        typeExerciseName.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplierForNonLabelHeight).isActive = true
+        typeExerciseName.topAnchor.constraint(equalTo: displayMuscleGroup.bottomAnchor, constant: spaceBetweenNonLables).isActive = true
     }
     
     func createAddResistenceTypeButton() {
-        addResistenceTypeButton.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height/2 - 75, width: screenSize.width, height: 50)
+        addResistenceTypeButton.translatesAutoresizingMaskIntoConstraints = false
         addResistenceTypeButton.setTitle("Add Resistence Type", for: .normal)
         addResistenceTypeButton.backgroundColor = ColorsForApp.componentBackgroundColor
         addResistenceTypeButton.setTitleColor(ColorsForApp.textColor, for: .normal)
         addResistenceTypeButton.addTarget(self, action: #selector(addExerciseViewController.addResistenceTypePressed), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(addResistenceTypeButton)
+        addResistenceTypeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        addResistenceTypeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        addResistenceTypeButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplierForNonLabelHeight).isActive = true
+        addResistenceTypeButton.topAnchor.constraint(equalTo: typeExerciseName.bottomAnchor, constant: spaceBetweenNonLables).isActive = true
+    }
+    
+    func createAddMuscleGroupButton() {
+        addMuscleGroupButton.translatesAutoresizingMaskIntoConstraints = false
+        addMuscleGroupButton.setTitle("Add Muscles Used", for: .normal)
+        addMuscleGroupButton.backgroundColor = ColorsForApp.componentBackgroundColor
+        addMuscleGroupButton.setTitleColor(ColorsForApp.textColor, for: .normal)
+        addMuscleGroupButton.addTarget(self, action: #selector(addExerciseViewController.addMuscleGroupPressed), for: UIControlEvents.touchUpInside)
+        addMuscleGroupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        addMuscleGroupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        addMuscleGroupButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplierForNonLabelHeight).isActive = true
+        addMuscleGroupButton.topAnchor.constraint(equalTo: addResistenceTypeButton.bottomAnchor, constant: spaceBetweenNonLables).isActive = true
+    }
+    
+    func createExerciseButton() {
+        createExercise.setTitle("Create Exercise", for: .normal)
+        createExercise.backgroundColor = ColorsForApp.componentBackgroundColor
+        createExercise.setTitleColor(ColorsForApp.textColor, for: .normal)
+        createExercise.addTarget(self, action: #selector(addExerciseViewController.createExercisePressed), for: UIControlEvents.touchUpInside)
+        createExercise.translatesAutoresizingMaskIntoConstraints = false
+        createExercise.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        createExercise.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        createExercise.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplierForNonLabelHeight).isActive = true
+        createExercise.topAnchor.constraint(equalTo: addMuscleGroupButton.bottomAnchor, constant: spaceBetweenNonLables).isActive = true
+        
     }
     
     func clearLabelsAndDisplaySucces() {
