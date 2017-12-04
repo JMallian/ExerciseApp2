@@ -8,6 +8,7 @@
 
 import UIKit
 
+// I think this might be a monster view controller
 class addExerciseViewController: UIViewController, UITextFieldDelegate, resistenceTypeTableViewDelegate, musclesTableViewDelegate {
     
     let displayName: UILabel
@@ -58,7 +59,7 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     }
     
     @objc func createExercisePressed() {
-        //makes an instance of an exercise class and adds it to the store of exercises!
+        //makes an instance of an exercise class and adds it to the store of exercises
         //button only does things if labels have data
         if (displayMuscleGroup.text != "" && displayResistenceType.text != "" && displayName.text != "") {
             let exerciseName = displayName.text
@@ -71,13 +72,12 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
             clearLabelsAndDisplaySucces()
             
             //for testing
-            print("items in exercise array: \(ExerciseStore.allExercises.count)")
-            ExerciseStore.printExercises()
+//            print("items in exercise array: \(ExerciseStore.allExercises.count)")
+//            ExerciseStore.printExercises()
         }
     }
     
     @objc func addMuscleGroupPressed() {
-        //self.present(musclesTableView(), animated: true, completion: nil)
         let nextViewController = musclesTableView()
         nextViewController.delegate = self
         self.navigationController?.pushViewController(nextViewController, animated: true)
@@ -87,7 +87,6 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         let nextViewController = resistenceTypeTableView(style: .plain)
         nextViewController.delegate = self
         self.navigationController?.pushViewController(nextViewController, animated: true)
-        //self.navigationController?.pushViewController(resistenceTypeTableView(style: .plain), animated: true)
     }
     
     //dismisses keyboard when user hits Return on keyboard while typing text into typeExerciseName UITextField
@@ -97,10 +96,12 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
         return true
     }
     
+    //has to receive information from resistenceTypeTableView
     func passResistenceType(text: String) {
         displayResistenceType.text = text
     }
     
+    //has to receive information from musclesTableView
     func passMusclesUsed(data: [String]) {
         var displayString = ""
         for item in data {
@@ -111,14 +112,41 @@ class addExerciseViewController: UIViewController, UITextFieldDelegate, resisten
     }
     
     func createLabels() {
-        displayName.frame = CGRect(x: 0, y: 50, width: screenSize.width, height: 50)
-        self.view.addSubview(displayName)
-        displayResistenceType.frame = CGRect(x: 0, y: 65, width: screenSize.width, height: 50)
-        self.view.addSubview(displayResistenceType)
-        displayMuscleGroup.frame = CGRect(x: 0, y: 80, width: screenSize.width, height: 50)
-        self.view.addSubview(displayMuscleGroup)
-        displayExercisesAddedSucces.frame = CGRect(x: 0, y: 95, width: screenSize.width, height: 50)
+        //displayName.frame = CGRect(x: 0, y: 50, width: screenSize.width, height: 50)
         self.view.addSubview(displayExercisesAddedSucces)
+        self.view.addSubview(displayName)
+        self.view.addSubview(displayResistenceType)
+        self.view.addSubview(displayMuscleGroup)
+        
+        displayName.translatesAutoresizingMaskIntoConstraints = false
+        displayName.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        displayName.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        displayName.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
+        displayName.topAnchor.constraint(equalTo: displayExercisesAddedSucces.bottomAnchor, constant: 5).isActive = true
+        
+        //displayResistenceType.frame = CGRect(x: 0, y: 65, width: screenSize.width, height: 50)
+        displayResistenceType.translatesAutoresizingMaskIntoConstraints = false
+
+        displayResistenceType.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        displayResistenceType.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        displayResistenceType.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
+        displayResistenceType.topAnchor.constraint(equalTo: displayName.bottomAnchor, constant: 5).isActive = true
+        
+        //displayMuscleGroup.frame = CGRect(x: 0, y: 80, width: screenSize.width, height: 50)
+        displayMuscleGroup.translatesAutoresizingMaskIntoConstraints = false
+        
+        displayMuscleGroup.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        displayMuscleGroup.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        displayMuscleGroup.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
+        displayMuscleGroup.topAnchor.constraint(equalTo: displayResistenceType.bottomAnchor, constant: 5).isActive = true
+        
+        //displayExercisesAddedSucces.frame = CGRect(x: 0, y: 95, width: screenSize.width, height: 50)
+        displayExercisesAddedSucces.translatesAutoresizingMaskIntoConstraints = false
+        //self.view.addSubview(displayExercisesAddedSucces)
+        displayExercisesAddedSucces.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        displayExercisesAddedSucces.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        displayExercisesAddedSucces.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
+        displayExercisesAddedSucces.topAnchor.constraint(equalTo: view.topAnchor, constant: 5).isActive = true
     }
     
     func createTextBox() {

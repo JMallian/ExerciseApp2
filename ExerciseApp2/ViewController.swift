@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         button.backgroundColor = ColorsForApp.componentBackgroundColor
         button.setTitleColor(ColorsForApp.textColor, for: .normal)
         button.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false //prevents view from being framed underneath the navigation bar
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -83,17 +83,16 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        //print(self.view.frame.size)
         //let margins = view.layoutMarginsGuide I don't care about this, but it's nice to know it exist
         //I don't love using some of these constants but when I tried to make them % of screen height they first failed
         //to resize properly when the screen was rotated when I got that working constraints were being broken
         //so for now constants are still used
-        //let height = view.frame.size.height
+//        let height = view.frame.size.height
 //        height = height - UIApplication.shared.statusBarFrame.height
 //        if let navBar = self.navigationController?.navigationBar.frame.size.height {
 //            height = height - navBar
 //        }
-        //print("height: \(height)")
+
         self.view.addSubview(startNewButton)
         startNewButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         startNewButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -118,6 +117,4 @@ class ViewController: UIViewController {
         addExerciseButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.20).isActive = true
         addExerciseButton.topAnchor.constraint(equalTo: createButton.bottomAnchor, constant: 10).isActive = true
     }
-    
-    
 }

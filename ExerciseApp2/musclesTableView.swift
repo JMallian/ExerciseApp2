@@ -16,7 +16,7 @@ class musclesTableView: UITableViewController {
     var dataMuscleGroups: [String] = []
     var delegate: musclesTableViewDelegate?
     var checkMarkCount: Int = 0
-    var maxCheckMarkCount: Int = 3
+    var maxCheckMarkCount: Int = 3 //could be more, but keeping it at 3 makes the display reasonable 
     var dataToPass: [String] = []
     let headerHeight: CGFloat = 50
     
