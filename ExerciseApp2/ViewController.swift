@@ -10,6 +10,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var allTheWorkouts = WorkoutStore() //needs to pass this to ChooseWorkoutTypeViewController 
     
     private let startNewButton: UIButton = {
         let button = UIButton()

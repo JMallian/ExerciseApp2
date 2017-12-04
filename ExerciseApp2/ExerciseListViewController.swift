@@ -18,13 +18,10 @@ class ExerciseListViewController: UITableViewController {
         navigationItem.title = "Exercises"
         tableView.register(ExerciseCell.self, forCellReuseIdentifier: cellID)
         tableView.tableFooterView = UIView()
-        //tableView.backgroundColor = UIColor(white: 1, alpha: 0.3)
-        //tableView.separatorColor = UIColor(white: 1, alpha: 0.2)
         tableView.backgroundColor = ColorsForApp.backroundColor
         tableView.separatorColor = ColorsForApp.componentBackgroundColor
         tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         fetchExercises()
-
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

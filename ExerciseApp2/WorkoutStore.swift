@@ -9,5 +9,9 @@
 import Foundation
 
 class WorkoutStore {
-    static var allWorkouts = [Workout]()
+    private var allWorkouts = [Workout]() //private and not a static, like how things are suppose to be
+    
+    func addWorkout(workout: Workout) {
+        allWorkouts.append(workout)
+    }
 }

@@ -22,6 +22,7 @@ class ExerciseStore {
         }
     }
     
+    //this is not even used right now
     func arrangeAlphabetically() {
         //allExercises.sort { $0.name < $1.name }
         ExerciseStore.allExercises = ExerciseStore.allExercises.sorted()

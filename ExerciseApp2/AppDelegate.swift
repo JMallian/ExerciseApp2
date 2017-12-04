@@ -18,13 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        window?.backgroundColor = ColorsForApp.backroundColor
-        let appNavController = UINavigationController(rootViewController: ViewController())
-        window?.rootViewController = appNavController
-        //window?.rootViewController = ViewController(nibName: nil, bundle: nil)
-        
         //add some exercises for testing purposes and whatnot
         let squat = Exercise(name: "squat", primaryMusclesUsed: ["quads", "hamstrings", "glutes"], resistenceType: "Barbell")
         let bench = Exercise(name: "bench", primaryMusclesUsed: ["pecs"], resistenceType: "Barbell")
@@ -47,7 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let set5 = ExerciseSet(name: "deadlift", resistenceType: "barbell", weight: 115, reps: 10)
         
         let workout1 = Workout(exerciseSet: [set1, set2, set3, set4, set5])
-        WorkoutStore.allWorkouts.append(workout1)
+        //WorkoutStore.allWorkouts.append(workout1)
+        let allTheWorkouts = WorkoutStore()
+        allTheWorkouts.addWorkout(workout: workout1)
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        window?.backgroundColor = ColorsForApp.backroundColor
+        let rootViewController = ViewController()
+        rootViewController.allTheWorkouts = allTheWorkouts
+        let appNavController = UINavigationController(rootViewController: rootViewController)
+        window?.rootViewController = appNavController
+
         
         
         return true

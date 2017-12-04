@@ -63,9 +63,10 @@ class repsController: UITableViewController, UITextFieldDelegate {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = ColorsForApp.backroundColor
         tableView.separatorColor = ColorsForApp.componentBackgroundColor
+        tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
-    // for the love of god, make a new file for this
+    // there's a lot of stuff going on here
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
         
@@ -152,10 +153,10 @@ class repsController: UITableViewController, UITextFieldDelegate {
     @objc func savePressed() {
         // to do: make sure only numbers exist in the text fields
         if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: weightTextfield.text!)) && CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: repsTextfield.text!)) {
-            print("only numbers here" )
+            //print("only numbers here" )
         }
         if weightTextfield.text != "" && repsTextfield.text != "" {
-            print("good to go" )
+            //print("good to go" )
             weightString = weightTextfield.text
             repsString = repsTextfield.text
             var weight: Int
@@ -211,11 +212,11 @@ class repsController: UITableViewController, UITextFieldDelegate {
         super.viewWillDisappear(animated)
         
         if self.isMovingFromParentViewController {
-            print("back button hit")
+            //print("back button hit")
             //if there is stuff in the array then it should be saved as an exercise in the workout
             if set.count != 0 {
                 delegate?.passDataBack(data: set)
-                print("passing data backwards!")
+                //print("passing data backwards!")
             }
             
         }

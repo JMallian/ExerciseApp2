@@ -29,40 +29,22 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-        print("reloading data")
+//        print("reloading data")
     }
     
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! WorkoutCell
-//
-//        cell.setName(name: rowsOfExerciseAndSets[indexPath.section][indexPath.row])
-//        cell.setResistence(resistence: "Section:\(indexPath.section) Row:\(indexPath.row)")
-//        //sometimes this makes a cell whose indexPath does not equal 0 (as indicated by above) change backgroundcolor and
-//        //I cannot figure out why
-//        //is it possible it only happens when there's enough cells that they go offscreen?
-//        if indexPath.row == 0 {
-//            cell.backgroundColor = ColorsForApp.componentBackgroundColor
-//        }
-//        return cell
-//    }
-    
-    //cannot recreate the issue if I'm not using dequeueReusableCell, it occurs to me that I need to change the color to .clear if the
-    //cell is not at indexPath.row because that cell may have been previously changed to blue and then reused???
-    //I mean, that makes sense right? 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let myCell = UITableViewCell(style: .default, reuseIdentifier: cellID)
-        myCell.textLabel?.text = rowsOfExerciseAndSets[indexPath.section][indexPath.row]
-        myCell.backgroundColor = .clear
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! WorkoutCell
+
+        cell.setName(name: rowsOfExerciseAndSets[indexPath.section][indexPath.row])
         if indexPath.row == 0 {
-            myCell.backgroundColor = ColorsForApp.componentBackgroundColor
+            cell.backgroundColor = ColorsForApp.componentBackgroundColor
+        }else{
+            cell.backgroundColor = .clear //this is necessary because cells are reused and may have had their background color changed
         }
-        
-        return myCell
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return rowsOfExerciseAndSets[section].count
     }
     
@@ -78,12 +60,12 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
     @objc func addExerciseButtonPressed() {
         //goes to a tableView of exercies
         let nextViewController = ExerciseListViewController(style: .plain)
-        nextViewController.whereICameFrom = self //doesn't seem right, but not sure how else to link them
+        nextViewController.whereICameFrom = self //this didn't seem like the right way to link them for info passing but the internet assured me it was
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     //do stuff with data from RepsController
-    func passDataBack(data: [ExerciseSet]) {
+    func passDataBack(data: [ExerciseSet]) { //this should probably be called receiveData or something
         ongoingWorkout?.addArrayOfSets(arrayOfSets: data)
         // ["squat", ["90 X 5"], ["90 X 5"], ["90 X 5"],
         // ["deadlift", ["140 X 1"], ["140 X 1"] etc.
@@ -154,7 +136,8 @@ class WorkoutCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // ideally the name (ex squat) would be a section and not be listed in every cell, but, baby steps
+    // ideally the name (ex squat) would be a section and not be listed in every cell, but that turned out to be difficult
+    // the way I was implementing it
     func setName(name: String) {
         nameDisplay.text = name
     }
