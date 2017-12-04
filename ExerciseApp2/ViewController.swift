@@ -10,7 +10,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var allTheWorkouts = WorkoutStore() //needs to pass this to ChooseWorkoutTypeViewController 
+    var allTheWorkouts: WorkoutStore? //needs to pass this to ChooseWorkoutTypeViewController, was set in AppDelegate
     
     private let startNewButton: UIButton = {
         let button = UIButton()
@@ -80,7 +80,9 @@ class ViewController: UIViewController {
     }
     
     @objc func startNewPressed() {
-        self.navigationController?.pushViewController(ChooseWorkoutTypeViewController(), animated: true)
+        let nextViewController = ChooseWorkoutTypeViewController()
+        nextViewController.allTheWorkouts = self.allTheWorkouts
+        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     override func viewDidLayoutSubviews() {

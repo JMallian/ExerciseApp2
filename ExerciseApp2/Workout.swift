@@ -28,4 +28,12 @@ class Workout {
     func getSets() -> [ExerciseSet] {
         return exerciseSet
     }
+    
+    func returnDateCreated() -> Date {
+        return dateCreated
+    }
+    
+    func returnNumberOfSets() -> Int {
+        return exerciseSet.count
+    }
 }

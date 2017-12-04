@@ -14,4 +14,8 @@ class WorkoutStore {
     func addWorkout(workout: Workout) {
         allWorkouts.append(workout)
     }
+    
+    func count() -> Int {
+        return allWorkouts.count
+    }
 }
