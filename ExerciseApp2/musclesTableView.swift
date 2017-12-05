@@ -180,10 +180,11 @@ class musclesTableView: UITableViewController {
         view.addSubview(addButton)
     }
     
+    //this has no functionality right now
     func addOrderButtonToHeader(view: UIView, frame: CGRect) {
         let orderMusclesButton = UIButton()
         orderMusclesButton.frame = CGRect(x: frame.size.width/3, y: 0, width: frame.size.width/3, height: headerHeight)
-        orderMusclesButton.setTitle("Order", for: .normal)
+        //orderMusclesButton.setTitle("Order", for: .normal)
         orderMusclesButton.backgroundColor = ColorsForApp.componentBackgroundColor
         orderMusclesButton.setTitleColor(ColorsForApp.textColor, for: .normal)
         orderMusclesButton.addTarget(self, action: #selector(musclesTableView.orderButtonPressed), for: UIControlEvents.touchUpInside)

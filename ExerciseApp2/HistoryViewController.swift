@@ -9,7 +9,8 @@
 import UIKit
 
 class HistoryViewController: UITableViewController {
-    var allTheWorkouts: WorkoutStore?
+    //var allTheWorkouts: WorkoutStore?
+    var allTheWorkouts: [Workout]?
     var cellID = "cellID"
     
     override func viewDidLoad() {
@@ -25,7 +26,8 @@ class HistoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! HistoryCell
         cell.backgroundColor = .clear
-        let aWorkout = allTheWorkouts?.getWorkout(index: indexPath.row)
+        //let aWorkout = allTheWorkouts?.getWorkout(index: indexPath.row)
+        let aWorkout = allTheWorkouts?[indexPath.row]
         let aDate = aWorkout?.returnDateCreated()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE MMM d, yyyy"
@@ -37,7 +39,7 @@ class HistoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if allTheWorkouts != nil {
-            return allTheWorkouts!.count()
+            return allTheWorkouts!.count
         }else{
             return 0
         }
@@ -48,7 +50,7 @@ class HistoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedWorkout = self.allTheWorkouts?.getWorkout(index: indexPath.row)
+        let selectedWorkout = self.allTheWorkouts?[indexPath.row]
         let nextViewController = ShowWorkoutFromHistory()
         nextViewController.workoutToDisplay = selectedWorkout
         self.navigationController?.pushViewController(nextViewController, animated: true)

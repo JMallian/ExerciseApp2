@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol chooseWorkoutTypeViewControllerDelegate: class {
+    func passData(data: Workout)
+}
+
 class ChooseWorkoutTypeViewController: UIViewController {
+    weak var delegate: chooseWorkoutTypeViewControllerDelegate?
     var choosePredefinedWorkout: UIButton
     var chooseAddExercisesAsYouGo: UIButton
     var allTheWorkouts: WorkoutStore?
     var workout: Workout?
+    var whereICameFrom: UIViewController?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         choosePredefinedWorkout = UIButton()
@@ -73,4 +79,17 @@ class ChooseWorkoutTypeViewController: UIViewController {
         nextView.ongoingWorkout = workout 
         self.navigationController?.pushViewController(nextView, animated: true)
     }
+    
+    override func viewWillDisappear(_ animated : Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParentViewController {
+            if workout != nil {
+                delegate?.passData(data: workout!)
+                print("just choose chooseWorkoutController passing data to ViewController")
+            }
+            
+        }
+    }
+    
 }

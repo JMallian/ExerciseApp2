@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.backgroundColor = ColorsForApp.backroundColor
         let rootViewController = ViewController()
-        rootViewController.allTheWorkouts = allTheWorkouts
+        //rootViewController.allTheWorkouts = allTheWorkouts
         let appNavController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = appNavController
 

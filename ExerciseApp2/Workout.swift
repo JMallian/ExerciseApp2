@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Workout {
+class Workout: NSObject, NSCoding {
+
     private let dateCreated: Date
     private var exerciseSet: [ExerciseSet]
     
@@ -41,5 +42,20 @@ class Workout {
     func returnNumberOfSets() -> Int {
         return exerciseSet.count
     }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.dateCreated, forKey: "dateCreated")
+        aCoder.encode(self.exerciseSet, forKey: "exerciseSet")
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        let dateCreated = aDecoder.decodeObject(forKey: "dateCreated") as! Date
+        let exerciseSet = aDecoder.decodeObject(forKey: "exerciseSet") as! [ExerciseSet]
+        
+        self.init(
+            exerciseSet: exerciseSet, date: dateCreated
+        )
+    }
+    
     
 }

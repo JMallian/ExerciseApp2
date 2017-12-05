@@ -9,7 +9,8 @@
 
 import Foundation
 
-class ExerciseSet {
+class ExerciseSet: NSObject, NSCoding {
+
     private let name: String
     private let resistenceType: String
     private let weight: Int
@@ -20,6 +21,7 @@ class ExerciseSet {
         self.resistenceType = resistenceType
         self.weight = weight
         self.reps = reps
+        super.init()
     }
     
     func getName() -> String{
@@ -36,6 +38,27 @@ class ExerciseSet {
     
     func getReps() -> Int {
         return reps
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.resistenceType, forKey: "resistenceType")
+        aCoder.encode(self.weight, forKey: "weight")
+        aCoder.encode(self.reps, forKey: "reps")
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        let name = aDecoder.decodeObject(forKey: "name") as! String
+        let resistenceType = aDecoder.decodeObject(forKey: "resistenceType") as! String
+        let weight = aDecoder.decodeInteger(forKey: "weight") as! Int
+        let reps = aDecoder.decodeInteger(forKey: "reps") as! Int
+        
+        self.init(
+            name: name,
+            resistenceType: resistenceType,
+            weight: weight,
+            reps: reps
+        )
     }
     
 }

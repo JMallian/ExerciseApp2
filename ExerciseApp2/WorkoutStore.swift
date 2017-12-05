@@ -22,4 +22,12 @@ class WorkoutStore {
     func getWorkout(index: Int) -> Workout {
         return allWorkouts[index]
     }
+    
+    func appendWorkouts(workouts: [Workout]) {
+        allWorkouts.append(contentsOf: workouts)
+    }
+    
+    func getAllWorkouts() -> [Workout] {
+        return allWorkouts
+    }
 }
