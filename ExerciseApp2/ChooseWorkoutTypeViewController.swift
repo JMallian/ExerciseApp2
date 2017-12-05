@@ -23,7 +23,7 @@ class ChooseWorkoutTypeViewController: UIViewController {
         let screenSize: CGSize = UIScreen.main.bounds.size
         let centerY: CGFloat = screenSize.height / 2
         choosePredefinedWorkout.frame = CGRect(x: 0, y: centerY - 175, width: screenSize.width, height: 50)
-        choosePredefinedWorkout.setTitle("Predifined Workout", for: .normal)
+        choosePredefinedWorkout.setTitle("Predifined Workout: not currently implemented", for: .normal)
         choosePredefinedWorkout.backgroundColor = ColorsForApp.componentBackgroundColor
         choosePredefinedWorkout.setTitleColor(ColorsForApp.textColor, for: .normal)
         choosePredefinedWorkout.addTarget(self, action: #selector(ChooseWorkoutTypeViewController.choosePredifinedClicked), for: UIControlEvents.touchUpInside)

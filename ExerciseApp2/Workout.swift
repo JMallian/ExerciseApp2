@@ -41,4 +41,5 @@ class Workout {
     func returnNumberOfSets() -> Int {
         return exerciseSet.count
     }
+    
 }

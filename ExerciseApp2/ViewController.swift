@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
     private let createButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Create Workout", for: .normal)
+        button.setTitle("Create Workout: Not Currently Implemented", for: .normal)
         button.backgroundColor = ColorsForApp.componentBackgroundColor
         button.setTitleColor(ColorsForApp.textColor, for: .normal)
         //button.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)

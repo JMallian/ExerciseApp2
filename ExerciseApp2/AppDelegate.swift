@@ -33,19 +33,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ExerciseStore.allExercises.append(gluteBridgeBarbell)
         
         let set1 = ExerciseSet(name: "squat", resistenceType: "Barbell", weight: 90, reps: 3)
-        let set2 = ExerciseSet(name: "squat", resistenceType: "Barbell", weight: 90, reps: 3)
-        let set3 = ExerciseSet(name: "squat", resistenceType: "Barbell", weight: 90, reps: 3)
-        
+        let set2 = ExerciseSet(name: "lunge", resistenceType: "Dumbbell", weight: 20, reps: 10)
+        let set3 = ExerciseSet(name: "squat", resistenceType: "Bodyweight", weight: 0, reps: 20)
         let set4 = ExerciseSet(name: "deadlift", resistenceType: "barbell", weight: 115, reps: 10)
-        let set5 = ExerciseSet(name: "deadlift", resistenceType: "barbell", weight: 115, reps: 10)
+        let set5 = ExerciseSet(name: "bench", resistenceType: "barbell", weight: 65, reps: 5)
         
         //let workout1 = Workout(exerciseSet: [set1, set2, set3, set4, set5])
         let date = Date(timeIntervalSinceReferenceDate: 529999999.0)
-        let workout2 = Workout(exerciseSet: [set1, set3, set4], date: date)
+        let workout2 = Workout(exerciseSet: [set1, set1, set1, set2, set2, set2, set2, set2], date: date)
         let date2 = Date(timeIntervalSinceReferenceDate: 531005459.0)
-        let workout3 = Workout(exerciseSet: [set5, set4, set3], date: date2)
+        let workout3 = Workout(exerciseSet: [set5, set5, set5, set5, set5, set4, set4, set4, set3, set3, set3, set3, set3], date: date2)
         let date3 = Date(timeIntervalSinceReferenceDate: 532005459.0)
-        let workout4 = Workout(exerciseSet: [set1, set2, set3, set5], date: date3)
+        let workout4 = Workout(exerciseSet: [set3, set3, set3, set3, set4, set4, set4, set4, set5, set5, set5, set5, set2, set2, set1, set1], date: date3)
 
         let allTheWorkouts = WorkoutStore()
         allTheWorkouts.addWorkout(workout: workout2)

@@ -90,16 +90,9 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
 class WorkoutCell: UITableViewCell {
     
     private var nameDisplay: UILabel
-    private var resistenceDisplay: UILabel
-    private var setDisplay: UILabel
 
-    
-    //layout needs to be updated since I changed info shown
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         nameDisplay = UILabel()
-        resistenceDisplay = UILabel()
-        setDisplay = UILabel()
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .clear
@@ -111,24 +104,6 @@ class WorkoutCell: UITableViewCell {
         nameDisplay.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
         nameDisplay.widthAnchor.constraint(equalToConstant: 150).isActive = true
         nameDisplay.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        resistenceDisplay.textColor = ColorsForApp.textColor
-        resistenceDisplay.textAlignment = NSTextAlignment.right
-        resistenceDisplay.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(resistenceDisplay)
-        resistenceDisplay.leftAnchor.constraint(equalTo: nameDisplay.rightAnchor, constant: 8).isActive = true
-        resistenceDisplay.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        resistenceDisplay.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
-        resistenceDisplay.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        setDisplay.textColor = ColorsForApp.textColor
-        setDisplay.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(setDisplay)
-        setDisplay.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
-        setDisplay.topAnchor.constraint(equalTo: nameDisplay.bottomAnchor, constant: 0).isActive = true
-        setDisplay.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
-        setDisplay.heightAnchor.constraint(equalToConstant: 30).isActive = true
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -139,14 +114,5 @@ class WorkoutCell: UITableViewCell {
     // the way I was implementing it
     func setName(name: String) {
         nameDisplay.text = name
-    }
-    
-    func setResistence(resistence: String) {
-        resistenceDisplay.text = resistence
-    }
-    
-    func setSet(set: String) {
-        setDisplay.text = set
-    }
-    
+    }    
 }

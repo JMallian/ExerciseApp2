@@ -10,8 +10,8 @@
 import Foundation
 
 class ExerciseSet {
-    let name: String
-    let resistenceType: String
+    private let name: String
+    private let resistenceType: String
     private let weight: Int
     private let reps: Int
     

@@ -32,12 +32,6 @@ class HistoryViewController: UITableViewController {
         if aDate != nil {
             cell.textLabel?.text = dateFormatter.string(from: aDate!)
         }
-    
-//        print(myDate)
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "EEEE MMM d, yyyy"
-//        print(dateFormatter.string(from: myDate))
-        
         return cell
     }
     
@@ -52,8 +46,19 @@ class HistoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedWorkout = self.allTheWorkouts?.getWorkout(index: indexPath.row)
+        let nextViewController = ShowWorkoutFromHistory()
+        nextViewController.workoutToDisplay = selectedWorkout
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
+    
 }
 
+
+//cell has not special formatting right now
 class HistoryCell: UITableViewCell {
     
 }
