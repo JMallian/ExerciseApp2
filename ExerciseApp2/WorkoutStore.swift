@@ -18,4 +18,8 @@ class WorkoutStore {
     func count() -> Int {
         return allWorkouts.count
     }
+    
+    func getWorkout(index: Int) -> Workout {
+        return allWorkouts[index]
+    }
 }

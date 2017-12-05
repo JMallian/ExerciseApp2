@@ -17,6 +17,11 @@ class Workout {
         self.exerciseSet = exerciseSet
     }
     
+    init(exerciseSet: [ExerciseSet], date: Date) { // this is only so I can put some fake workouts in with past dates 
+        self.dateCreated = date
+        self.exerciseSet = exerciseSet
+    }
+    
     func addSet(set: ExerciseSet) {
         exerciseSet.append(set)
     }

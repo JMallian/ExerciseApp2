@@ -15,7 +15,6 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
     let cellID = "cellID"
     var rowsOfExerciseAndSets = [[String]]()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Workout"

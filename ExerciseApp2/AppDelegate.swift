@@ -5,7 +5,7 @@
 //  Created by Mallian, Jessica L on 11/13/17.
 //  Copyright © 2017 Mallian, Jessica L. All rights reserved.
 //
-
+//  ideally ths would display a scrollable calander, but babysteps 
 import UIKit
 
 @UIApplicationMain
@@ -39,10 +39,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let set4 = ExerciseSet(name: "deadlift", resistenceType: "barbell", weight: 115, reps: 10)
         let set5 = ExerciseSet(name: "deadlift", resistenceType: "barbell", weight: 115, reps: 10)
         
-        let workout1 = Workout(exerciseSet: [set1, set2, set3, set4, set5])
-        //WorkoutStore.allWorkouts.append(workout1)
+        //let workout1 = Workout(exerciseSet: [set1, set2, set3, set4, set5])
+        let date = Date(timeIntervalSinceReferenceDate: 529999999.0)
+        let workout2 = Workout(exerciseSet: [set1, set3, set4], date: date)
+        let date2 = Date(timeIntervalSinceReferenceDate: 531005459.0)
+        let workout3 = Workout(exerciseSet: [set5, set4, set3], date: date2)
+        let date3 = Date(timeIntervalSinceReferenceDate: 532005459.0)
+        let workout4 = Workout(exerciseSet: [set1, set2, set3, set5], date: date3)
+
         let allTheWorkouts = WorkoutStore()
-        allTheWorkouts.addWorkout(workout: workout1)
+        allTheWorkouts.addWorkout(workout: workout2)
+        allTheWorkouts.addWorkout(workout: workout3)
+        allTheWorkouts.addWorkout(workout: workout4)
+        //allTheWorkouts.addWorkout(workout: workout1)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
@@ -52,8 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appNavController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = appNavController
 
-        
-        
         return true
     }
 

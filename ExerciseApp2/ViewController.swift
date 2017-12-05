@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         button.setTitle("History", for: .normal)
         button.backgroundColor = ColorsForApp.componentBackgroundColor
         button.setTitleColor(ColorsForApp.textColor, for: .normal)
-        //button.addTarget(self, action: #selector(ViewController.startNewPressed), for: UIControlEvents.touchUpInside)
+        button.addTarget(self, action: #selector(ViewController.historyPressed), for: UIControlEvents.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -85,16 +85,18 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
+    @objc func historyPressed() {
+        let nextViewController = HistoryViewController()
+        nextViewController.allTheWorkouts = self.allTheWorkouts
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
     override func viewDidLayoutSubviews() {
-        //let margins = view.layoutMarginsGuide I don't care about this, but it's nice to know it exist
+        // hmm, I didn't use this function anywhere else, not sure where the best place to lay out constraints is
+        // let margins = view.layoutMarginsGuide - I don't care about this, but it's nice to know it exist
         //I don't love using some of these constants but when I tried to make them % of screen height they first failed
         //to resize properly when the screen was rotated when I got that working constraints were being broken
         //so for now constants are still used
-//        let height = view.frame.size.height
-//        height = height - UIApplication.shared.statusBarFrame.height
-//        if let navBar = self.navigationController?.navigationBar.frame.size.height {
-//            height = height - navBar
-//        }
 
         self.view.addSubview(startNewButton)
         startNewButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
