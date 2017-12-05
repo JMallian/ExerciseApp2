@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+// this was used before I was saving and loading the workouts
 class WorkoutStore {
     private var allWorkouts = [Workout]() //private and not a static, like how things are suppose to be
     

@@ -8,7 +8,6 @@
 
 import UIKit
 
-// need custom header, footer, and tableViewCells
 class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegate {
     
     var ongoingWorkout: Workout?
@@ -77,13 +76,6 @@ class AsYouGoWorkoutViewController: UITableViewController, repsControllerDelegat
             arrayToAdd.append(justTheNumbers)
         }
         rowsOfExerciseAndSets.append(arrayToAdd)
-        
-        for row in rowsOfExerciseAndSets {
-            print("in a row: ")
-            for item in row {
-                print(item)
-            }
-        }
     }
 }
 

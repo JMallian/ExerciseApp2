@@ -153,10 +153,8 @@ class repsController: UITableViewController, UITextFieldDelegate {
     @objc func savePressed() {
         // to do: make sure only numbers exist in the text fields
         if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: weightTextfield.text!)) && CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: repsTextfield.text!)) {
-            //print("only numbers here" )
         }
         if weightTextfield.text != "" && repsTextfield.text != "" {
-            //print("good to go" )
             weightString = weightTextfield.text
             repsString = repsTextfield.text
             var weight: Int
@@ -212,11 +210,9 @@ class repsController: UITableViewController, UITextFieldDelegate {
         super.viewWillDisappear(animated)
         
         if self.isMovingFromParentViewController {
-            //print("back button hit")
             //if there is stuff in the array then it should be saved as an exercise in the workout
             if set.count != 0 {
                 delegate?.passDataBack(data: set)
-                //print("passing data backwards!")
             }
             
         }

@@ -28,7 +28,7 @@ class ViewController: UIViewController, chooseWorkoutTypeViewControllerDelegate 
     
     private let historyButton: UIButton = {
         let button = UIButton()
-        button.setTitle("History", for: .normal)
+        button.setTitle("History (need to add to see - they will save)", for: .normal)
         button.backgroundColor = ColorsForApp.componentBackgroundColor
         button.setTitleColor(ColorsForApp.textColor, for: .normal)
         button.addTarget(self, action: #selector(ViewController.historyPressed), for: UIControlEvents.touchUpInside)
@@ -89,9 +89,10 @@ class ViewController: UIViewController, chooseWorkoutTypeViewControllerDelegate 
         super.viewDidLoad()
         self.title = "Exercise App"
         self.navigationController?.navigationBar.isTranslucent = false
+        //deleteData()
         restoreWorkouts()
     }
-        
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -103,8 +104,7 @@ class ViewController: UIViewController, chooseWorkoutTypeViewControllerDelegate 
     
     @objc func startNewPressed() {
         let nextViewController = ChooseWorkoutTypeViewController()
-        nextViewController.allTheWorkouts = self.allTheWorkouts
-        nextViewController.whereICameFrom = self
+        //nextViewController.allTheWorkouts = self.exerciseCollection
         nextViewController.delegate = self
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
@@ -181,9 +181,11 @@ class ViewController: UIViewController, chooseWorkoutTypeViewControllerDelegate 
     }
     
     func passData(data: Workout) {
-        exerciseCollection.append(data)
-        saveWorkouts()
-        print("passData called")
+        if !data.getSets().isEmpty { //if you navigate to next view controller and then go back a workout will be created but empty
+            exerciseCollection.append(data)
+            saveWorkouts()
+
+        }
     }
     
     

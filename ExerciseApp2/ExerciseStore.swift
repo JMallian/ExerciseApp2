@@ -10,6 +10,8 @@
 import UIKit
 
 class ExerciseStore {
+    // I realize this is not good practice, this was done before I read up on
+    // how to pass data through ViewControllers
     static var allExercises = [Exercise]()
     
     func storeExercise(exercise: Exercise) {

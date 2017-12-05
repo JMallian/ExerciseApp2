@@ -16,7 +16,7 @@ class ChooseWorkoutTypeViewController: UIViewController {
     weak var delegate: chooseWorkoutTypeViewControllerDelegate?
     var choosePredefinedWorkout: UIButton
     var chooseAddExercisesAsYouGo: UIButton
-    var allTheWorkouts: WorkoutStore?
+    //var allTheWorkouts: WorkoutStore?
     var workout: Workout?
     var whereICameFrom: UIViewController?
     
@@ -53,17 +53,6 @@ class ChooseWorkoutTypeViewController: UIViewController {
         chooseAddExercisesAsYouGo.topAnchor.constraint(equalTo: choosePredefinedWorkout.bottomAnchor, constant: 10).isActive = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if let workoutToSave = workout {
-            print("I exist")
-            print("number of sets in me: \(workoutToSave.returnNumberOfSets())")
-            if allTheWorkouts != nil {
-                allTheWorkouts?.addWorkout(workout: workoutToSave)
-                print("workouts in store: \(allTheWorkouts?.count() ?? -1)") //why on earth do I have to provide a default value? 
-            }
-        }
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -86,7 +75,6 @@ class ChooseWorkoutTypeViewController: UIViewController {
         if self.isMovingFromParentViewController {
             if workout != nil {
                 delegate?.passData(data: workout!)
-                print("just choose chooseWorkoutController passing data to ViewController")
             }
             
         }
